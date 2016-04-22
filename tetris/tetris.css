@@ -1,0 +1,12 @@
+#field{
+	height: 640px;
+	width: 480px;
+}
+
+.block{
+	background-color: #333366;
+	margin: 1px;
+	height: 18px;
+	width: 18px;
+	position: absolute;
+}
