@@ -1,35 +1,58 @@
-var field = document.getElementById('field');
-var block = document.createElement('div');
-block.setAttribute('class', 'block');
-block.setAttribute('style', 'left:30px;');
-var i = 0;
-var shape = [
-	document.createElement('div'),
-	document.createElement('div'),
-	document.createElement('div'),
-	document.createElement('div')
-];
-addToField = function(field, T, b, shape){
-		shape[0].setAttribute('class', 'block');
-		shape[1].setAttribute('class', 'block');
-		shape[2].setAttribute('class', 'block');
-		shape[3].setAttribute('class', 'block');
-		shape[0].setAttribute('style', 'top:' + (100 + 20 * T[0][1]) + 'px;' + 'left:' + (100 + 20 * T[0][0]) + 'px;');
-		shape[1].setAttribute('style', 'top:' + (100 + 20 * T[1][1]) + 'px;' + 'left:' + (100 + 20 * T[1][0]) + 'px;');
-		shape[2].setAttribute('style', 'top:' + (100 + 20 * T[2][1]) + 'px;' + 'left:' + (100 + 20 * T[2][0]) + 'px;');
-		shape[3].setAttribute('style', 'top:' + (100 + 20 * T[3][1]) + 'px;' + 'left:' + (100 + 20 * T[3][0]) + 'px;');
-		//alert('buttom:' + (100 + 20 * T[3][1]) + 'px;' + 'left:' + (100 + 20 * T[3][0]) + 'px;');
-		field.appendChild(shape[0]);
-		field.appendChild(shape[1]);
-		field.appendChild(shape[2]);
-		field.appendChild(shape[3]);
+var BLOCK_SIZE = 20;
+var NUM_OF_BLOCKS_PER_TETRIS = 4;
+
+function Tetris(shape, centerPosition){
+	this.shape = shape;
+	
+	this.blocks = Array(NUM_OF_BLOCKS_PER_TETRIS);
+
+	this.centerPosition = centerPosition;
+
+	this.getBlocks = function(){
+		return this.blocks;
 	};
 
-addToField(field, spin(shapeList[4]), block, shape);
+	this.physicalMovement = function(){
+		for(var i = 0; i < NUM_OF_BLOCKS_PER_TETRIS; i++){
+			this.blocks[i].setAttribute('style', 
+				'top:' + (BLOCK_SIZE * this.centerPosition[1] + BLOCK_SIZE * this.shape[i][1]) + 'px;' 
+				+ 'left:' + (BLOCK_SIZE * this.centerPosition[0] + BLOCK_SIZE * this.shape[i][0]) + 'px;');
+		}
+	};
 
-function fun(){
-	block.setAttribute('style', 'top: ' + i * 30 + 'px;');
-	i++;
+	this.addToField = function(field){
+		for(var i = 0; i < NUM_OF_BLOCKS_PER_TETRIS; i++){
+			this.blocks[i] = document.createElement('div');
+			this.blocks[i].setAttribute('class', 'block');
+			field.appendChild(this.blocks[i]);
+		}
+		this.physicalMovement();
+	};
+	
+	this.spin = function(spinMetrix){
+		newShape = Array(4);
+		for(var i = 0; i < NUM_OF_BLOCKS_PER_TETRIS; i++){
+			newShape[i] = [
+				spinMetrix[0][0] * this.shape[i][0] + spinMetrix[1][0] * this.shape[i][1], 
+				spinMetrix[0][1] * this.shape[i][0] + spinMetrix[1][1] * this.shape[i][1]
+			];
+		}
+		this.shape = newShape;
+		this.physicalMovement();
+	};
+
+	this.down = function(){
+		this.centerPosition[1]++;
+		this.physicalMovement();
+	};
+
+	this.left = function(){
+		this.centerPosition[0]--;
+		this.physicalMovement();
+	};
+
+	this.right = function(){
+		this.centerPosition[0]++;
+		this.physicalMovement();
+	};
 }
-setInterval(fun, 1000);
-
