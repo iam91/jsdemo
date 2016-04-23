@@ -151,6 +151,23 @@ function FreeSpace(width, length){
 		return this.freeSpace[x][y][0];
 	};
 
+	this.isFailed = function(){
+		for(var i = 1; i < this.width + 2; i++){
+			if(!this.freeSpace[i][0][0]){
+				return true;
+			}
+		}
+		return false;
+	};
+
+	this.clearRaws = function(){
+		for(var i = this.length - 1; i >=0; i--){
+			for(var j = 1; j < this.width + 2; j++){
+
+			}
+		}
+	};
+
 	this.getWidth = function(){
 		return this.width;
 	};
