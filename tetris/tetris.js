@@ -148,7 +148,7 @@ function FreeSpace(width, length){
 	};
 
 	this.isFree = function(x, y){
-		return this.freeSpace[x][y];
+		return this.freeSpace[x][y][0];
 	};
 
 	this.getWidth = function(){

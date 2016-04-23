@@ -1,9 +1,9 @@
 var field = document.getElementById('field');
 
 var freeSpace = new FreeSpace(25, 30);
-var temp = new Tetris(T, [12, 5], freeSpace);
+//var temp = new Tetris(T, [12, 5], freeSpace);
 
-document.onkeydown = function(){
+var keyStrokeHandler = function(){
 	code = event.keyCode;
 	if(code == 32){
 		temp.spin(spinMetrix);
@@ -19,6 +19,27 @@ document.onkeydown = function(){
 	}
 };
 
-temp.addToField(field);
+//temp.addToField(field);
 
-setInterval('temp.down()', 1000);
+function fun(freeSpace){
+	temp.down();
+	if(temp.isStop()){
+		clearInterval(t);
+
+		temp = null;
+		rand = Math.floor(Math.random() * 7);
+		document.onkeydown = keyStrokeHandler;
+		temp = new Tetris(shapeList[rand], [12, 5], freeSpace);
+		temp.addToField(field);
+		t = setInterval('fun()', 600);
+	}
+}
+
+var t = 0;
+var temp = null;
+var rand = Math.floor(Math.random() * 7);
+document.onkeydown = keyStrokeHandler;
+
+temp = new Tetris(shapeList[rand], [12, 5], freeSpace);
+temp.addToField(field);
+t = setInterval('fun(freeSpace);', 600);
