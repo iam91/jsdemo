@@ -1,5 +1,37 @@
+body{
+	background-color: #f5f6f7;
+	border-radius: 3px;
+}
+
+#field{
+	background-color: #ffffff;
+	width: 400px;
+	height: 600px;
+	padding: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+	box-shadow: 0 2px 2px 1px #dddddd;
+	float: left;
+	position: relative;
+}
+
+#control{
+	background-color: #ffffff;
+	width: 200px;
+	height: 200px;
+	padding: 20px;
+	margin-left: 20px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #ffffff;
+	box-shadow: 0 2px 2px 1px #dddddd;
+	float: left;
+}
+
 .block{
-	background-color: #333366;
+	background-color: #69b241;
+	border-radius: 3px;
+	box-shadow: 2px 2px 3px #cccccc;
 	margin: 1px;
 	height: 18px;
 	width: 18px;

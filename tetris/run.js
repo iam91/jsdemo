@@ -1,13 +1,22 @@
-var START_X = 3;
+var SPACE_WIDTH = 20;
+var SPACE_LENGTH = 30;
+var START_X = SPACE_WIDTH / 2;
 var START_Y = 5;
-var SPACE_WIDTH = 6;
-var SPACE_LENGTH = 20;
 
 var field = document.getElementById('field');
+var control = document.getElementById('control');
 
 var freeSpace = new FreeSpace(SPACE_WIDTH, SPACE_LENGTH);
 
-var keyStrokeHandler = function(){
+control.onmouseenter = function(){
+	control.setAttribute('style', 'border-color: #999999;');
+}
+
+control.onmouseleave = function(){
+	control.setAttribute('style', 'border-color: #ffffff;');
+}
+
+document.onkeydown = function(){
 	code = event.keyCode;
 	if(code == 32){
 		tetris.spin(spinMetrix);
@@ -22,8 +31,6 @@ var keyStrokeHandler = function(){
 		tetris.down();
 	}
 };
-
-document.onkeydown = keyStrokeHandler;
 
 var t = 0;
 var tetris = null;
