@@ -218,6 +218,9 @@ function FreeSpace(width, length){
 			if(canRemove){
 				//remove blocks
 				for(var j = 1; j < this.width + 1; j++){
+					//erase out
+					
+					//delete from document
 					this.freeSpace[j][y][1].parentNode.removeChild(this.freeSpace[j][y][1]);
 					this.freeSpace[j][y][1] = null;
 					this.freeSpace[j][y][0] = true;
