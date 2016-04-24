@@ -1,15 +1,11 @@
-var START_X = 12;
+var START_X = 3;
 var START_Y = 5;
-var SPACE_WIDTH = 25;
+var SPACE_WIDTH = 6;
 var SPACE_LENGTH = 20;
 
 var field = document.getElementById('field');
 
 var freeSpace = new FreeSpace(SPACE_WIDTH, SPACE_LENGTH);
-
-var t = 0;
-var tetris = null;
-var rand = Math.floor(Math.random() * 7);
 
 var keyStrokeHandler = function(){
 	code = event.keyCode;
@@ -29,6 +25,9 @@ var keyStrokeHandler = function(){
 
 document.onkeydown = keyStrokeHandler;
 
+var t = 0;
+var tetris = null;
+var rand = Math.floor(Math.random() * shapeList.length);
 
 tetris = new Tetris(shapeList[rand], [START_X, START_Y], freeSpace);
 tetris.addToField(field);

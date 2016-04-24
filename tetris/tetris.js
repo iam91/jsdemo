@@ -87,6 +87,7 @@ function Tetris(shape, centerPosition, freeSpace){
 				this.centerPosition[1]--;
 				this.stop = true;
 				this.freeSpace.setOccupied(this.currPositions, this.blocks);
+				this.freeSpace.clearRaws();
 			}
 		}
 	};
@@ -161,9 +162,53 @@ function FreeSpace(width, length){
 	};
 
 	this.clearRaws = function(){
-		for(var i = this.length - 1; i >=0; i--){
-			for(var j = 1; j < this.width + 2; j++){
+		var canRemove = undefined;
+		var isAllFree = undefined;
+		var allFreeLine = this.length;
 
+		for(var i = this.length - 1; i >= 0; i--){
+			isAllFree = true;
+			for(var j = 1; j < this.width + 1; j++){
+				if(!this.freeSpace[j][i][0]){
+					isAllFree = false;
+				}
+			}
+			if(isAllFree){
+				allFreeLine = i;
+				break;
+			}
+		}
+		for(var i = this.length - 1; i > allFreeLine; i--){
+			canRemove = true;
+			for(var j = 1; j < this.width + 1; j++){
+				if(this.freeSpace[j][i][0]){
+					canRemove = false;
+				}
+			}
+			//alert(canRemove, i);
+			if(canRemove){
+				//remove blocks
+				for(var j = 1; j < this.width + 1; j++){
+					this.freeSpace[j][i][1].parentNode.removeChild(this.freeSpace[j][i][1]);
+					this.freeSpace[j][i][1] = null;
+					this.freeSpace[j][i][0] = true;
+				}
+				if(i > 0){
+					//fall down
+					for(var j = i; j > allFreeLine; j--){
+						for(var k = 1; k < this.width + 1; k++){
+							this.freeSpace[k][j][0] = this.freeSpace[k][j - 1][0];
+							this.freeSpace[k][j][1] = this.freeSpace[k][j - 1][1];
+							if(!this.freeSpace[k][j][0]){
+								this.freeSpace[k][j][1].setAttribute('style', 
+									'top:' + (BLOCK_SIZE * j) + 'px;' 
+									+ 'left:' + (BLOCK_SIZE * k) + 'px;');
+							}
+						}
+					}
+					//reset unchecked line index
+					i++;
+				}
 			}
 		}
 	};
