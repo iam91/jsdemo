@@ -87,7 +87,7 @@ function Tetris(shape, centerPosition, freeSpace){
 				this.centerPosition[1]--;
 				this.stop = true;
 				this.freeSpace.setOccupied(this.currPositions, this.blocks);
-				this.freeSpace.clearRaws();
+				this.freeSpace.clearRaws(this.currPositions);
 			}
 		}
 	};
@@ -161,11 +161,39 @@ function FreeSpace(width, length){
 		return false;
 	};
 
-	this.clearRaws = function(){
+	this.clearRaws = function(positions){
+		var candidateRaws = Array();
+		var isCleared = undefined;
 		var canRemove = undefined;
-		var isAllFree = undefined;
-		var allFreeLine = this.length;
 
+		for(var i = 0; i < NUM_OF_BLOCKS_PER_TETRIS; i++){
+			y = positions[i][1];
+
+			//whether this raw has been cleared
+			isCleared = false;
+			for(var j = 0; j < candidateRaws.length; j++){
+				if(candidateRaws[j] == y){
+					isCleared = true;
+				}
+			}
+			if(!isCleared){
+				candidateRaws[candidateRaws.length] = y;
+			}
+		}
+
+		candidateRaws.sort(function(x, y){
+			if(x < y){
+				return 1;
+			}
+			else if(x > y){
+				return -1;
+			}
+			else if(x == y){
+				return 0;
+			}
+		});
+
+		var allFreeLine = -1;
 		for(var i = this.length - 1; i >= 0; i--){
 			isAllFree = true;
 			for(var j = 1; j < this.width + 1; j++){
@@ -178,24 +206,25 @@ function FreeSpace(width, length){
 				break;
 			}
 		}
-		for(var i = this.length - 1; i > allFreeLine; i--){
+
+		for(var i = 0; i < candidateRaws.length; i++){
+			y = candidateRaws[i];
 			canRemove = true;
 			for(var j = 1; j < this.width + 1; j++){
-				if(this.freeSpace[j][i][0]){
+				if(this.freeSpace[j][y][0]){
 					canRemove = false;
 				}
 			}
-			//alert(canRemove, i);
 			if(canRemove){
 				//remove blocks
 				for(var j = 1; j < this.width + 1; j++){
-					this.freeSpace[j][i][1].parentNode.removeChild(this.freeSpace[j][i][1]);
-					this.freeSpace[j][i][1] = null;
-					this.freeSpace[j][i][0] = true;
+					this.freeSpace[j][y][1].parentNode.removeChild(this.freeSpace[j][y][1]);
+					this.freeSpace[j][y][1] = null;
+					this.freeSpace[j][y][0] = true;
 				}
-				if(i > 0){
+				if(y > 0){
 					//fall down
-					for(var j = i; j > allFreeLine; j--){
+					for(var j = y; j > allFreeLine; j--){
 						for(var k = 1; k < this.width + 1; k++){
 							this.freeSpace[k][j][0] = this.freeSpace[k][j - 1][0];
 							this.freeSpace[k][j][1] = this.freeSpace[k][j - 1][1];
@@ -206,8 +235,10 @@ function FreeSpace(width, length){
 							}
 						}
 					}
-					//reset unchecked line index
-					i++;
+					allFreeLine++;
+					for(var j = i; j < candidateRaws.length; j++){
+						candidateRaws[j]++;
+					}
 				}
 			}
 		}
