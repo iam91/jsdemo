@@ -5,15 +5,22 @@ var START_Y = 5;
 
 var field = document.getElementById('field');
 var control = document.getElementById('control');
+var restart = document.createElement('div');
+restart.setAttribute('class', 'btn');
+restart.innerHTML = 'Restart';
 
 var freeSpace = new FreeSpace(SPACE_WIDTH, SPACE_LENGTH);
 
 control.onmouseenter = function(){
-	control.setAttribute('style', 'border-color: #999999;');
+	control.setAttribute('style', 'border-color: #999999;' 
+		+ 'font-weight: bold;'
+		+ 'color: #43a102;');
 }
 
 control.onmouseleave = function(){
-	control.setAttribute('style', 'border-color: #ffffff;');
+	control.setAttribute('style', 'border-color: #ffffff;' 
+		+ 'font-weight: normal;'
+		+ 'color: #69b241;');
 }
 
 control.onmouseup = function(){
@@ -51,8 +58,8 @@ function controlShow(){
 		var b = document.createElement('div');
 		b.setAttribute('class', 'block');
 		b.setAttribute('style', 
-				'top:' + (BLOCK_SIZE * (8 + nextShape[i][1])) + 'px;' 
-				+ 'left:' + (BLOCK_SIZE * (8 + nextShape[i][0])) + 'px;');
+				'top:' + (BLOCK_SIZE * (3 + nextShape[i][1])) + 'px;' 
+				+ 'left:' + (BLOCK_SIZE * (6 + nextShape[i][0])) + 'px;');
 		control.appendChild(b);
 	}
 }
@@ -69,7 +76,26 @@ control.onmousedown = function(){
 		controlShow();
 		t = setInterval('tetrisCreator();', 600);
 		gameIsStart = true;
+		//add restart button
+		restart.setAttribute('style', 'float:right;margin-top:30px;opacity: 0.0;');
+		control.parentNode.appendChild(restart);
+
+		opa = 0.0
+		speed = 0.05;
+		tt = setTimeout('fadeIn();', 50);
 	}
+}
+
+var tt = 0;
+var opa = 0.0;
+var speed = 0.01;
+function fadeIn(){
+	restart.setAttribute('style', 'float:right;margin-top:30px;opacity: ' + (opa + speed));
+	clearTimeout(tt);
+	if((opa + speed) < 1.0){
+		tt = setTimeout('fadeIn();', 50);
+	}
+	opa += speed;
 }
 
 document.onkeydown = function(){
