@@ -87,7 +87,7 @@ function Tetris(shape, centerPosition, freeSpace){
 				this.centerPosition[1]--;
 				this.stop = true;
 				this.freeSpace.setOccupied(this.currPositions, this.blocks);
-				this.freeSpace.clearRaws(this.currPositions);
+				this.freeSpace.clearRows(this.currPositions);
 			}
 		}
 	};
@@ -161,8 +161,8 @@ function FreeSpace(width, length){
 		return false;
 	};
 
-	this.clearRaws = function(positions){
-		var candidateRaws = Array();
+	this.clearRows = function(positions){
+		var candidateRows = Array();
 		var isCleared = undefined;
 		var canRemove = undefined;
 
@@ -171,17 +171,17 @@ function FreeSpace(width, length){
 
 			//whether this raw has been cleared
 			isCleared = false;
-			for(var j = 0; j < candidateRaws.length; j++){
-				if(candidateRaws[j] == y){
+			for(var j = 0; j < candidateRows.length; j++){
+				if(candidateRows[j] == y){
 					isCleared = true;
 				}
 			}
 			if(!isCleared){
-				candidateRaws[candidateRaws.length] = y;
+				candidateRows[candidateRows.length] = y;
 			}
 		}
 
-		candidateRaws.sort(function(x, y){
+		candidateRows.sort(function(x, y){
 			if(x < y){
 				return 1;
 			}
@@ -207,19 +207,20 @@ function FreeSpace(width, length){
 			}
 		}
 
-		for(var i = 0; i < candidateRaws.length; i++){
-			y = candidateRaws[i];
+		for(var i = 0; i < candidateRows.length; i++){
+			y = candidateRows[i];
 			canRemove = true;
 			for(var j = 1; j < this.width + 1; j++){
 				if(this.freeSpace[j][y][0]){
 					canRemove = false;
 				}
 			}
+			
 			if(canRemove){
 				//remove blocks
 				for(var j = 1; j < this.width + 1; j++){
 					//erase out
-					
+
 					//delete from document
 					this.freeSpace[j][y][1].parentNode.removeChild(this.freeSpace[j][y][1]);
 					this.freeSpace[j][y][1] = null;
@@ -232,15 +233,19 @@ function FreeSpace(width, length){
 							this.freeSpace[k][j][0] = this.freeSpace[k][j - 1][0];
 							this.freeSpace[k][j][1] = this.freeSpace[k][j - 1][1];
 							if(!this.freeSpace[k][j][0]){
-								this.freeSpace[k][j][1].setAttribute('style', 
-									'top:' + (BLOCK_SIZE * j) + 'px;' 
-									+ 'left:' + (BLOCK_SIZE * k) + 'px;');
+								var step = 20;
+								var speed = BLOCK_SIZE / step;
+								for(var m = 1; m <= step; m++){
+									this.freeSpace[k][j][1].setAttribute('style', 
+										'top:' + (speed * m * j) + 'px;' 
+										+ 'left:' + (speed * m * k) + 'px;');
+								}
 							}
 						}
 					}
 					allFreeLine++;
-					for(var j = i; j < candidateRaws.length; j++){
-						candidateRaws[j]++;
+					for(var j = i; j < candidateRows.length; j++){
+						candidateRows[j]++;
 					}
 				}
 			}
