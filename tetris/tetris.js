@@ -1,5 +1,9 @@
 var BLOCK_SIZE = 20;
 var NUM_OF_BLOCKS_PER_TETRIS = 4;
+var SPACE_WIDTH = 6;
+var SPACE_LENGTH = 30;
+var START_X = SPACE_WIDTH / 2;
+var START_Y = 2;
 
 function Tetris(shape, centerPosition, freeSpace){
 	this.shape = shape;
@@ -153,14 +157,24 @@ function FreeSpace(width, length){
 	};
 
 	this.isFailed = function(){
-		for(var i = 1; i < this.width + 2; i++){
-			if(!this.freeSpace[i][0][0]){
+		for(var i = 1; i < this.width + 1; i++){
+			if(!this.freeSpace[i][START_Y][0]){
 				return true;
 			}
 		}
 		return false;
 	};
-
+/*
+	this.clearAll = function(){
+		for(var i = 1; i < width + 1; i++){
+			for(var j = 0; j < length - 1; j++){
+				this.freeSpace[i][j][1].parentNode.removeChild(this.freeSpace[i][j][1]);
+				this.freeSpace[i][j][1] = null;
+				this.freeSpace[i][j][0] = true;
+			}
+		}
+	};
+*/
 	this.clearRows = function(positions){
 		var candidateRows = Array();
 		var isCleared = undefined;

@@ -1,8 +1,3 @@
-var SPACE_WIDTH = 6;
-var SPACE_LENGTH = 30;
-var START_X = SPACE_WIDTH / 2;
-var START_Y = 5;
-
 var field = document.getElementById('field');
 var control = document.getElementById('control');
 var restart = document.createElement('div');
@@ -10,22 +5,6 @@ restart.setAttribute('class', 'btn');
 restart.innerHTML = 'Restart';
 
 var freeSpace = new FreeSpace(SPACE_WIDTH, SPACE_LENGTH);
-
-control.onmouseenter = function(){
-	control.setAttribute('style', 'border-color: #999999;' 
-		+ 'font-weight: bold;'
-		+ 'color: #43a102;');
-}
-
-control.onmouseleave = function(){
-	control.setAttribute('style', 'border-color: #ffffff;' 
-		+ 'font-weight: normal;'
-		+ 'color: #69b241;');
-}
-
-control.onmouseup = function(){
-	control.setAttribute('style', 'box-shadow: 0 2px 2px 1px #dddddd;');
-}
 
 var t = 0;
 var tetris = null;
@@ -35,17 +14,18 @@ function tetrisCreator(){
 	tetris.down();
 	if(tetris.isStop()){
 		clearInterval(t);
-
 		if(freeSpace.isFailed()){
-			//failed handle
+			alert('failed');
+			//TODO 
 		}
-
-		tetris = null;
-		tetris = new Tetris(shapeList[rand], [START_X, START_Y], freeSpace);
-		tetris.addToField(field);
-		rand = Math.floor(Math.random() * shapeList.length);
-		controlShow();
-		t = setInterval('tetrisCreator();', 600);
+		else{
+			tetris = null;
+			tetris = new Tetris(shapeList[rand], [START_X, START_Y], freeSpace);
+			tetris.addToField(field);
+			rand = Math.floor(Math.random() * shapeList.length);
+			controlShow();
+			t = setInterval(tetrisCreator, 600);
+		}
 	}
 }
 
@@ -59,22 +39,21 @@ function controlShow(){
 		b.setAttribute('class', 'block');
 		b.setAttribute('style', 
 				'top:' + (BLOCK_SIZE * (3 + nextShape[i][1])) + 'px;' 
-				+ 'left:' + (BLOCK_SIZE * (6 + nextShape[i][0])) + 'px;');
+				+ 'left:' + (BLOCK_SIZE * (5 + nextShape[i][0])) + 'px;');
 		control.appendChild(b);
 	}
 }
 
 var gameIsStart = false;
 control.onmousedown = function(){
-	control.setAttribute('style', 'box-shadow: 0 0px 0px 0px #dddddd;');
-	control.innerHTML = '';
 	if(!gameIsStart){
+		control.innerHTML = '';
 		rand = Math.floor(Math.random() * shapeList.length);
 		tetris = new Tetris(shapeList[rand], [START_X, START_Y], freeSpace);
 		tetris.addToField(field);
 		rand = Math.floor(Math.random() * shapeList.length);
 		controlShow();
-		t = setInterval('tetrisCreator();', 600);
+		t = setInterval(tetrisCreator, 600);
 		gameIsStart = true;
 		//add restart button
 		restart.setAttribute('style', 'float:right;margin-top:30px;opacity: 0.0;');
@@ -82,7 +61,7 @@ control.onmousedown = function(){
 
 		opa = 0.0
 		speed = 0.05;
-		tt = setTimeout('fadeIn();', 50);
+		tt = setTimeout(fadeIn, 50);
 	}
 }
 
@@ -90,12 +69,19 @@ var tt = 0;
 var opa = 0.0;
 var speed = 0.01;
 function fadeIn(){
-	restart.setAttribute('style', 'float:right;margin-top:30px;opacity: ' + (opa + speed));
+	restart.setAttribute('style', 'float:right;margin-top:30px;opacity: ' 
+		+ (opa + speed));
 	clearTimeout(tt);
-	if((opa + speed) < 1.0){
-		tt = setTimeout('fadeIn();', 50);
-	}
 	opa += speed;
+	if((opa + speed) < 1.0){
+		tt = setTimeout(fadeIn, 50);
+	}
+	else{
+		restart.onclick = function(){
+			freeSpace.clearAll();
+			//TODO
+		};
+	}
 }
 
 document.onkeydown = function(){
