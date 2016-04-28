@@ -1,7 +1,7 @@
 var BLOCK_SIZE = 20;
 var NUM_OF_BLOCKS_PER_TETRIS = 4;
-var SPACE_WIDTH = 6;
-var SPACE_LENGTH = 30;
+var SPACE_WIDTH = 20;
+var SPACE_LENGTH = 31;
 var START_X = SPACE_WIDTH / 2;
 var START_Y = 2;
 
@@ -62,6 +62,12 @@ function Tetris(shape, centerPosition, freeSpace){
 		}
 		this.physicalMovement();
 	};
+
+	this.clear = function(){
+		for(var i = 0; i < NUM_OF_BLOCKS_PER_TETRIS; i++){
+			this.blocks[i] = null;
+		}
+	}
 	
 	this.spin = function(spinMetrix){
 		if(!this.stop){
@@ -128,9 +134,9 @@ function FreeSpace(width, length){
 	this.length = length;
 
 	this.freeSpace = (function(){
-		free = Array(width);
+		free = Array(width + 2);
 		for(var i = 0; i < width + 2; i++){
-			free[i] = Array(length);
+			free[i] = Array(length + 1);
 			for(var j = 0; j < length + 1; j++){
 				if(i == 0 || i == width + 1 || j == length){
 					free[i][j] = [false, null];
@@ -164,17 +170,16 @@ function FreeSpace(width, length){
 		}
 		return false;
 	};
-/*
+
 	this.clearAll = function(){
 		for(var i = 1; i < width + 1; i++){
-			for(var j = 0; j < length - 1; j++){
-				this.freeSpace[i][j][1].parentNode.removeChild(this.freeSpace[i][j][1]);
+			for(var j = 0; j < length; j++){
 				this.freeSpace[i][j][1] = null;
 				this.freeSpace[i][j][0] = true;
 			}
 		}
 	};
-*/
+
 	this.clearRows = function(positions){
 		var candidateRows = Array();
 		var isCleared = undefined;
@@ -229,12 +234,9 @@ function FreeSpace(width, length){
 					canRemove = false;
 				}
 			}
-			
 			if(canRemove){
 				//remove blocks
 				for(var j = 1; j < this.width + 1; j++){
-					//erase out
-
 					//delete from document
 					this.freeSpace[j][y][1].parentNode.removeChild(this.freeSpace[j][y][1]);
 					this.freeSpace[j][y][1] = null;

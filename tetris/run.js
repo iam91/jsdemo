@@ -9,14 +9,12 @@ var freeSpace = new FreeSpace(SPACE_WIDTH, SPACE_LENGTH);
 var t = 0;
 var tetris = null;
 var rand = undefined;
-
 function tetrisCreator(){
 	tetris.down();
 	if(tetris.isStop()){
 		clearInterval(t);
 		if(freeSpace.isFailed()){
 			alert('failed');
-			//TODO 
 		}
 		else{
 			tetris = null;
@@ -44,8 +42,50 @@ function controlShow(){
 	}
 }
 
+function doRestart(){
+	//stop tetris from moving down
+	clearTimeout(t);
+	//clear all
+	while(field.hasChildNodes()){
+		field.removeChild(field.firstChild);
+	}
+	tetris.clear();
+	tetris = null;
+	freeSpace.clearAll();
+	//reset control
+	while(control.hasChildNodes()){
+		control.removeChild(control.firstChild);
+	}
+	control.innerHTML = 'Start Game';
+	gameIsStart = false;
+	//restart button erase out
+	opa = 1.0;
+	speed = -0.05;
+	tt = setTimeout(restartButtonErase, 10);
+}
+
+var tt = 0;
+var opa = 0.0;
+var speed = 0.05;
+function restartButtonErase(){
+	restart.setAttribute('style', 'float:right;margin-top:30px;opacity: ' 
+		+ (opa + speed));
+	clearTimeout(tt);
+	opa += speed;
+	if(opa < 1.0 && speed > 0){
+		tt = setTimeout(restartButtonErase, 10);
+	}
+	else if(opa > 0.0 && speed < 0){
+		tt = setTimeout(restartButtonErase, 10);
+	}
+	else if(opa >= 1.0 && speed > 0){
+		//bind restarting
+		restart.onclick = doRestart;
+	}
+}
+
 var gameIsStart = false;
-control.onmousedown = function(){
+control.onclick = function(){
 	if(!gameIsStart){
 		control.innerHTML = '';
 		rand = Math.floor(Math.random() * shapeList.length);
@@ -58,29 +98,10 @@ control.onmousedown = function(){
 		//add restart button
 		restart.setAttribute('style', 'float:right;margin-top:30px;opacity: 0.0;');
 		control.parentNode.appendChild(restart);
-
+		//restart button erase in
 		opa = 0.0
 		speed = 0.05;
-		tt = setTimeout(fadeIn, 50);
-	}
-}
-
-var tt = 0;
-var opa = 0.0;
-var speed = 0.01;
-function fadeIn(){
-	restart.setAttribute('style', 'float:right;margin-top:30px;opacity: ' 
-		+ (opa + speed));
-	clearTimeout(tt);
-	opa += speed;
-	if((opa + speed) < 1.0){
-		tt = setTimeout(fadeIn, 50);
-	}
-	else{
-		restart.onclick = function(){
-			freeSpace.clearAll();
-			//TODO
-		};
+		tt = setTimeout(restartButtonErase, 10);
 	}
 }
 
