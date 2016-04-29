@@ -3,20 +3,35 @@
 	height: 2em;
 }
 
-.login{
-	width: 33%;
-	position: absolute;
-	color: #bec0c2;
+.container{
+	position: relative;
 	left: 33%;
-	right: 33%;
 }
 
-.login-head{
+.signin, .signup{
+	width: 33%;
+	color: #bec0c2;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transition: transform 1s;
+	backface-visibility:hidden;
+}
+
+.signup{
+	transform: rotateY(-180deg);
+}
+
+.signup-flipped{
+	transform: rotateY(0deg);
+}
+
+.signin-flipped{
+	transform: rotateY(180deg);
+}
+
+.signin-head, .signup-head{
 	padding-left: 20px;
-}
-
-.login-body{
-	height: 20em;
 }
 
 .input-box{
