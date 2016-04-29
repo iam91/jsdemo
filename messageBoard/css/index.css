@@ -1,0 +1,25 @@
+.header{
+	font-size: 2em;
+	height: 2em;
+}
+
+.login{
+	width: 33%;
+	position: absolute;
+	color: #bec0c2;
+	left: 33%;
+	right: 33%;
+}
+
+.login-head{
+	padding-left: 20px;
+}
+
+.login-body{
+	height: 20em;
+}
+
+.input-box{
+	height: 25px;
+	width: 90%;
+}
