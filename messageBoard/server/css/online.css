@@ -1,0 +1,12 @@
+.board{
+	width: 30%;
+	height: 0;
+}
+
+.board-show{
+	height: 200px;
+	transition: height 1s;
+	-moz-transition: height 1s; /* Firefox 4 */
+	-webkit-transition: height 1s; /* Safari 和 Chrome */
+	-o-transition: height 1s; /* Opera */
+}
