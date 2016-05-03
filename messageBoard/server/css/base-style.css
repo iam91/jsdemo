@@ -33,6 +33,10 @@ body{
 }
 
 .btn{
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+
 	background-color: #69b241;
 	border-color: #538033;
 	color: #ffffff;

@@ -12,13 +12,12 @@ function start(route, handler){
 		console.log('pathname ' + pathname);
 		console.log('query ' + query);
 		
-		route(pathname, handler, res);
+		route(pathname, query, handler, res);
 		if(pathname == '/end'){
 			server.close();
 		}
 	});
-
-	server.listen(8000, '127.0.0.1');
+	server.listen(5555, '127.0.0.1');
 	console.log('Server running at 127.0.0.1');
 }
 

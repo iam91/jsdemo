@@ -1,19 +1,26 @@
 var fs = require('fs');
 var path = require('path');
 
-function staticResourceHandler(pathname, res){
+function userHandler(pathname, res, query){
+	
+	res.writeHead(200, {'Content-Type': 'text/plain'});
+	res.end('ok');
+	//TODO connect database
+}
+
+function staticResourceHandler(pathname, res, query){
 	var resourceDir = '';
 	if(pathname === '' || pathname === '/' || pathname === '/index.html'){
-		resourceDir += 'index.html';
+		resourceDir += './html/index.html';
 	}
 	else if(pathname.indexOf('/css') === 0
-		|| pathname.indexOf('/js') === 0){
+		|| pathname.indexOf('/js') === 0
+		|| pathname.indexOf('/html') === 0){
 		resourceDir += '.' + pathname;
 	}
 	fs.readFile(resourceDir, 'binary', function(error, data){
 		var ext = path.extname(resourceDir);
 		var type = getType(ext);
-		console.log('resourceDir: ' + resourceDir + ';ext: ' + ext + ';type: ' + type);
 		if(error){
 			res.writeHead(500, {'Content-Type': 'text/plain'});
 			res.end("Server error: " + error);
@@ -57,3 +64,4 @@ function getType(ext){
 }
 
 exports.staticResourceHandler = staticResourceHandler;
+exports.userHandler = userHandler;

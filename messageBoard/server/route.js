@@ -1,10 +1,30 @@
-function route(pathname, handler, res){
+function route(pathname, query, handler, res){
 	console.log('Route ' + pathname);
-	if(typeof handler[pathname] === 'function'){
-		handler[pathname](pathname, res);
+	var handlerIndex = undefined;
+	if(pathname.indexOf('/css') === 0){
+		handlerIndex = '/css';
+	}
+	else if(pathname.indexOf('/js') === 0){
+		handlerIndex = '/js';
+	}
+	else if(pathname.indexOf('/html') === 0){
+		handlerIndex = '/html';
+	}
+	else if(pathname === '/'){
+		handlerIndex = '/';
+	}
+	else if(pathname === '/index.html'){
+		handlerIndex = '/index.html';
+	}
+	else if(pathname.indexOf('/user') === 0){
+		handlerIndex = '/user';
+	}
+
+	if(typeof handler[handlerIndex] === 'function'){
+		handler[handlerIndex](pathname, res, query);
 	}
 	else{
-		console.log('No request handler found for ' + pathname);
+		console.log('No request handler found for ' + handlerIndex + ';' + pathname);
 	}
 }
 
