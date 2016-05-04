@@ -1,4 +1,4 @@
-function route(pathname, query, handler, res){
+function route(method, pathname, query, handler, res){
 	console.log('Route ' + pathname);
 	var handlerIndex = undefined;
 	if(pathname.indexOf('/css') === 0){
@@ -19,9 +19,12 @@ function route(pathname, query, handler, res){
 	else if(pathname.indexOf('/user') === 0){
 		handlerIndex = '/user';
 	}
+	else if(pathname.indexOf('/msg') === 0){
+		handlerIndex = '/msg';
+	}
 
 	if(typeof handler[handlerIndex] === 'function'){
-		handler[handlerIndex](pathname, res, query);
+		handler[handlerIndex](method, pathname, res, query);
 	}
 	else{
 		console.log('No request handler found for ' + handlerIndex + ';' + pathname);

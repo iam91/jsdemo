@@ -1,14 +1,32 @@
 var fs = require('fs');
 var path = require('path');
 
-function userHandler(pathname, res, query){
-	
+function msgHandler(method, pathname, res, query){
+    if(method === 'GET'){
+        //message list
+        var ret = new Array(10);
+        for(var i = 0; i < 10; i++){
+            ret[i] = JSON.stringify({'name': i, 'message': i * 10});
+            console.log(ret[i]);
+        }
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        
+    }
+    else if(method === 'POST'){
+
+    }
+    else if(method === 'PUT'){
+
+    }
+}
+
+function userHandler(method, pathname, res, query){
 	res.writeHead(200, {'Content-Type': 'text/plain'});
 	res.end('ok');
 	//TODO connect database
 }
 
-function staticResourceHandler(pathname, res, query){
+function staticResourceHandler(method, pathname, res, query){
 	var resourceDir = '';
 	if(pathname === '' || pathname === '/' || pathname === '/index.html'){
 		resourceDir += './html/index.html';
@@ -65,3 +83,4 @@ function getType(ext){
 
 exports.staticResourceHandler = staticResourceHandler;
 exports.userHandler = userHandler;
+exports.msgHandler = msgHandler;
