@@ -16,7 +16,9 @@ function showList(){
 var t = setTimeout(init, 200);
 function init(){
 	var board = document.getElementById('board');
-	board.className = 'board-show card';
+	var submitMsg = document.querySelector('.submit-msg');
+	board.className = 'show board-show card';
+	submitMsg.className = 'btn-flip show';
 	
 	list = document.getElementById('msg-list');
 	i = 0;
@@ -58,7 +60,6 @@ function formList(msgArray){
 		list.appendChild(msgCard);
 	}
 }
-
 
 
 

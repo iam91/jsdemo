@@ -56,5 +56,52 @@ body{
 }
 
 .btn:active{
-	box-shadow: 0 1px 1px 1px #036803 inset;
+	box-shadow: 0 0 2px 1px #036803 inset;
+}
+
+.btn-flip{
+	width: 300px;
+	height: 200px;
+	position: relative;
+}
+
+.btn-flip-front{
+	backface-visibility: hidden;
+	height: 30px;
+	width: 100px;
+	padding: 3px;
+	margin: 10px;
+	line-height: 30px;
+	background-color: #b81d18;
+	border-color: #202020;
+	color: #ffffff;
+	text-align: center;
+	font-size: 1.2em;
+	font-weight: bold;
+	position: absolute;
+	top: 0;
+	left: 90px;
+}
+
+.btn-flip-front:active{
+	background-color: #ec583a;
+}
+
+.btn-flip-front:hover{
+	box-shadow: 0 0 2px 1px #202020;
+}
+
+.btn-flip-back{
+	backface-visibility: hidden;
+	box-shadow: 0 0 20px 1px #202020;
+	padding: 3px;
+	margin: 10px;
+	width: 280px;
+	height: 180px;
+	visibility: hidden;
+	transform: rotateX(180deg);
+
+	position: absolute;
+	top: 0;
+	left: 0;
 }

@@ -1,6 +1,18 @@
+body{
+	background-color: #f0f0f0;
+}
+
 #left, #right{
 	width: 50%;
 	float: left;
+}
+
+.show{
+	opacity: 1.0;
+	transition: opacity 1s;
+	-moz-transition: opacity 1s;
+	-webkit-transition: opacity 1s;
+	-o-transition: opacity 1s;
 }
 
 .board{
@@ -9,12 +21,7 @@
 }
 
 .board-show{
-	opacity: 1.0;
 	height: 200px;
-	transition: opacity 1s;
-	-moz-transition: opacity 1s;
-	-webkit-transition: opacity 1s;
-	-o-transition: opacity 1s;
 }
 
 .msg{
@@ -29,16 +36,24 @@
 	-o-transition: opacity 0.2s;
 }
 
-.msg-show:hover{
-	transform: rotateX(-90deg);
-	transition: transform 0.5s;
-}
-
 #msg-draft{
 	outline: none;
 	resize: none;
-	width: 100%;
+	padding: 5px;
+	border-style: dotted;
+	width: 98%;
 	height: 90%;
-	padding: 0;
 	border-radius: 5px;
+}
+
+#msg-draft:focus{
+	transition: box-shadow 0.1s;
+	box-shadow:0 0 12px 1px #b81d18;
+	border-color: #b81d18;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.submit-msg{
+	opacity: 0;
 }
