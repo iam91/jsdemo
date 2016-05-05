@@ -1,12 +1,33 @@
+#left, #right{
+	width: 50%;
+	float: left;
+}
+
 .board{
-	width: 60%;
 	height: 0;
 }
 
 .board-show{
 	height: 200px;
 	transition: height 1s;
-	-moz-transition: height 1s; /* Firefox 4 */
-	-webkit-transition: height 1s; /* Safari 和 Chrome */
-	-o-transition: height 1s; /* Opera */
+	-moz-transition: height 1s;
+	-webkit-transition: height 1s;
+	-o-transition: height 1s;
+}
+
+.msg{
+	opacity: 0;
+}
+
+.msg-show{
+	opacity: 1.0;
+	transition: opacity 0.2s;
+	-moz-transition: opacity 0.2s;
+	-webkit-transition: opacity 0.2s;
+	-o-transition: opacity 0.2s;
+}
+
+.msg-show:hover{
+	transform: rotateX(-90deg);
+	transition: transform 1s;
 }

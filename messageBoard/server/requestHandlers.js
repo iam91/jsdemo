@@ -6,11 +6,10 @@ function msgHandler(method, pathname, res, query){
         //message list
         var ret = new Array(10);
         for(var i = 0; i < 10; i++){
-            ret[i] = JSON.stringify({'name': i, 'message': i * 10});
-            console.log(ret[i]);
+            ret[i] = {'name': i, 'message': i * 10};
         }
         res.writeHead(200, {'Content-Type': 'application/json'});
-        
+        res.end(JSON.stringify(ret));
     }
     else if(method === 'POST'){
 
