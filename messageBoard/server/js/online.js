@@ -40,7 +40,7 @@ function queryMsgList(){
 				return null;
 			}
 		}
-	}
+	};
 	var urlString = '/msg';
 	xhr.open('get', urlString, true);
 	xhr.send(null);

@@ -1,0 +1,72 @@
+.btn-flip{
+	width: 100px;
+	height: 30px;
+	margin: 10px;
+	padding: 0;
+	position: relative;
+	overflow: hidden;
+	box-shadow: 0 0 2px 1px #202020;
+}
+
+.btn-flip-show{
+	height: 180px;
+	width: 280px;
+	transform: rotateY(180deg) rotateX(180deg);
+	box-shadow: 0 0 20px 1px #202020;
+	transition: transform 1s, box-shadow 1s, height 0.8s cubic-bezier(0.23, 1, 0.32, 1), width 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.btn-flip-front{
+	backface-visibility: hidden;
+	height: 100%;
+	width: 100%;
+	line-height: 30px;
+	background-color: #b81d18;
+	border-color: #202020;
+	color: #ffffff;
+	text-align: center;
+	font-size: 1.2em;
+	font-weight: bold;
+	position: absolute;
+}
+
+.btn-flip-front-show{
+	transition: opacity 0.4s;
+	opacity: 0;
+}
+
+
+.btn-flip-front:active{
+	box-shadow: 0 0 0 0 #ffffff;
+}
+
+.btn-flip-front:hover{
+	background-color: #ec583a;
+}
+
+.btn-flip-back{
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.btn-flip-back-show{
+	opacity: 1.0;
+	transform: rotateY(-180deg) rotateX(-180deg);
+	transition: opacity 1s cubic-bezier(.89,.03,.97,.04), transform 0.8;
+}
+
+.btn-flip-yes{
+
+}
+
+.btn-flip-no{
+
+}
+
+.btn-flip-question{
+	
+}

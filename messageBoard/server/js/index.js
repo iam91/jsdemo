@@ -43,7 +43,7 @@ signinBtn.onclick = function(){
 				alert('Request was unsuccessful: ' + xhr.status);
 			}
 		}
-	}
+	};
 	xhr.open('get', urlString, true);
 	xhr.send(null);
 }
