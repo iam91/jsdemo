@@ -44,6 +44,8 @@ body{
 	width: 98%;
 	height: 90%;
 	border-radius: 5px;
+	box-shadow:0 0 0 0 #b81d18;
+	transition: box-shadow 0.1s;
 }
 
 #msg-draft:focus{
