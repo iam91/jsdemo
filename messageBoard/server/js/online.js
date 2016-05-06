@@ -1,5 +1,10 @@
 queryMsgList();
 
+var board = document.querySelector('#board');
+var submitMsg = document.querySelector('.submit-msg');
+var clear = document.querySelector('.clear');
+var msgDraft = document.querySelector('#msg-draft');
+
 var i;
 var list;
 var tt;
@@ -15,16 +20,18 @@ function showList(){
 
 var t = setTimeout(init, 200);
 function init(){
-	var board = document.getElementById('board');
-	var submitMsg = document.querySelector('.submit-msg');
 	board.className = 'show board-show card';
-	submitMsg.className = 'btn-flip show';
+	submitMsg.className = 'submit-msg btn-flip show';
+	clear.className = 'clear btn-flip show';
 	
 	list = document.getElementById('msg-list');
 	i = 0;
 	tt = setTimeout(showList, 200);
 
 	clearTimeout(t);
+
+	flipBtnOnClick(submitMsg);
+	flipBtnOnClick(clear);
 }
 
 function queryMsgList(){
@@ -60,6 +67,5 @@ function formList(msgArray){
 		list.appendChild(msgCard);
 	}
 }
-
 
 

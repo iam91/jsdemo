@@ -7,14 +7,6 @@ body{
 	float: left;
 }
 
-.show{
-	opacity: 1.0;
-	transition: opacity 1s;
-	-moz-transition: opacity 1s;
-	-webkit-transition: opacity 1s;
-	-o-transition: opacity 1s;
-}
-
 .board{
 	height: 200px;
 	opacity: 0.0;
@@ -58,4 +50,20 @@ body{
 
 .submit-msg{
 	opacity: 0;
+	top: 0;
+	left: 120px;
+}
+
+.clear{
+	opacity: 0;
+	top: 0;
+	left: 0;
+}
+
+.show{
+	opacity: 1.0;
+	transition: opacity 1s;
+	-moz-transition: opacity 1s;
+	-webkit-transition: opacity 1s;
+	-o-transition: opacity 1s;
 }
