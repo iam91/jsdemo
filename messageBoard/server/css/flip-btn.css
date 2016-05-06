@@ -35,7 +35,6 @@
 	opacity: 0;
 }
 
-
 .btn-flip-front:active{
 	box-shadow: 0 0 0 0 #ffffff;
 }
@@ -54,6 +53,7 @@
 }
 
 .btn-flip-back-show{
+	background-color: #202020;
 	opacity: 1.0;
 	transform: rotateY(-180deg) rotateX(-180deg);
 	transition: opacity 1s cubic-bezier(.89,.03,.97,.04), transform 0.8;
@@ -68,5 +68,6 @@
 }
 
 .btn-flip-question{
-	
+	color: #f0f0f0;
+	text-align: center;
 }
