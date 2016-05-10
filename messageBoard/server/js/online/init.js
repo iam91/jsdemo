@@ -59,5 +59,3 @@ function formMessageCard(baseCard, msg){
 	message.innerHTML = msg.message;
 	down.appendChild(message);
 }
-
-
