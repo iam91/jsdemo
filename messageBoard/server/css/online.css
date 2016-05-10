@@ -16,12 +16,10 @@ body{
 	opacity: 0.0;
 }
 
-.board-show{
-	height: 200px;
-}
-
 .msg{
 	opacity: 0;
+	position: relative;
+	color: #4d4e53;
 }
 
 .msg-show{
@@ -30,6 +28,27 @@ body{
 	-moz-transition: opacity 0.2s;
 	-webkit-transition: opacity 0.2s;
 	-o-transition: opacity 0.2s;
+}
+
+.msg-up{
+	height: 80px;
+	border-bottom: 1px solid #dddddd;
+}
+
+.msg-name{
+	position: absolute;
+	left: 100px;
+	top: 0;
+	margin: 10px;
+	padding: 10px;
+}
+
+.msg-profile{
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	left: 0;
+	top: 0;
 }
 
 #msg-draft{

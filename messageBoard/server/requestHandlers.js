@@ -2,6 +2,7 @@ var fs = require('fs');
 var path = require('path');
 
 function msgHandler(method, pathname, res, query, postData){
+    //TODO connect database
     if(method === 'GET'){
         //message list
         var ret = new Array(10);

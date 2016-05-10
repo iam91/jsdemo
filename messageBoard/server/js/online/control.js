@@ -1,10 +1,6 @@
 flipBtnOnClick(submitMsg);
 flipBtnOnClick(clear);
 
-submitMsg.addEventListener('click', function(){
-
-}, false);
-
 clearYes.addEventListener('click', function(){
 	msgDraft.value = '';
 }, false);

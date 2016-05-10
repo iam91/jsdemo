@@ -17,7 +17,3 @@ function queryMsgList(fun){
 	xhr.open('get', urlString, true);
 	xhr.send(null);
 }
-
-function temp(){
-	console.log('in temp');
-}
