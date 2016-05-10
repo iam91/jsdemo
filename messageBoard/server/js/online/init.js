@@ -1,9 +1,10 @@
-queryMsgList();
+queryMsgList(123);
 
-var board = document.querySelector('#board');
-var submitMsg = document.querySelector('.submit-msg');
-var clear = document.querySelector('.clear');
-var msgDraft = document.querySelector('#msg-draft');
+queryMsgList(234);
+formList(messageList);
+
+alert(messageList);
+
 
 var i;
 var list;
@@ -18,6 +19,7 @@ function showList(){
 	}
 }
 
+
 var t = setTimeout(init, 200);
 function init(){
 	board.className = 'show board-show card';
@@ -29,28 +31,6 @@ function init(){
 	tt = setTimeout(showList, 200);
 
 	clearTimeout(t);
-
-	flipBtnOnClick(submitMsg);
-	flipBtnOnClick(clear);
-}
-
-function queryMsgList(){
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4){
-			if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
-				var msgArray = xhr.responseText;
-				formList(msgArray);
-			}
-			else{
-				alert('Request was unsuccessful: ' + xhr.status);
-				return null;
-			}
-		}
-	};
-	var urlString = '/msg';
-	xhr.open('get', urlString, true);
-	xhr.send(null);
 }
 
 function formList(msgArray){

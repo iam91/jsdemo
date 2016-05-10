@@ -1,0 +1,26 @@
+.btn{
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+
+	background-color: #69b241;
+	border-color: #538033;
+	color: #ffffff;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 1.2em;
+	font-weight: bold;
+	height: 30px;
+	width: 100px;
+	padding: 3px;
+	margin: 10px;
+	line-height: 30px;
+}
+
+.btn:hover{
+	background-color: #538033;
+}
+
+.btn:active{
+	box-shadow: 0 0 2px 1px #036803 inset;
+}

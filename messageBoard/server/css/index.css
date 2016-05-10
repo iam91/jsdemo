@@ -1,4 +1,27 @@
 .header{
+	padding: 10px;
+	margin-left: -20px;
+	margin-right: -20px;
+	background-color: #69b241;
+	color: #ffffff;
+	text-align: center;
+}
+
+.input-box{
+	margin: 10px;
+	padding: 2px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	outline-color: #69b241;
+}
+
+.input-label{
+	margin: 10px;
+	padding: 5px;
+	color: #4c4c4c;
+}
+
+.header{
 	font-size: 2em;
 	height: 2em;
 }

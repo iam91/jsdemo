@@ -1,21 +1,14 @@
-signinSwitch = document.querySelector('.signin-switch');
-signupSwitch = document.querySelector('.signup-switch');
-signin = document.querySelector('.signin');
-signup = document.querySelector('.signup');
-signinBtn = document.querySelector('#signin-btn');
-signupBtn = document.querySelector('#signup-btn');
-
-signinSwitch.onclick = function(){
+signinSwitch.addEventListener('click', function(){
 	signin.className = 'signin card signin-flipped';
 	signup.className = 'signup card signup-flipped';
-}
+}, false);
 
-signupSwitch.onclick = function(){
+signupSwitch.addEventListener('click', function(){
 	signin.className = 'signin card';
 	signup.className = 'signup card';
-}
+}, false);
 
-signinBtn.onclick = function(){
+signinBtn.addEventListener('click', function(){
 	var urlString = '/user';
 	var inputForm = document.getElementById('signin-form');
 	
@@ -46,8 +39,8 @@ signinBtn.onclick = function(){
 	};
 	xhr.open('get', urlString, true);
 	xhr.send(null);
-}
+}, false);
 
-signupBtn.onclick = function(){
+signupBtn.addEventListener('click', function(){
 
-}
+}, false);
