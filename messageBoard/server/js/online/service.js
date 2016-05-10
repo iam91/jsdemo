@@ -1,11 +1,11 @@
-function queryMsgList(yy){
+function queryMsgList(fun){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(event){
 		if(xhr.readyState == 4){
 			if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
 				var msgArray = xhr.responseText;
-				//return msgArray;
-				alert(yy);
+				//is it right?
+				fun(msgArray);
 			}
 			else{
 				alert('Request was unsuccessful: ' + xhr.status);

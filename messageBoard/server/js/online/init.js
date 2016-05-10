@@ -1,10 +1,4 @@
-queryMsgList(123);
-
-queryMsgList(234);
-formList(messageList);
-
-alert(messageList);
-
+queryMsgList(formList);
 
 var i;
 var list;
@@ -25,11 +19,9 @@ function init(){
 	board.className = 'show board-show card';
 	submitMsg.className = 'submit-msg btn-flip show';
 	clear.className = 'clear btn-flip show';
-	
 	list = document.getElementById('msg-list');
 	i = 0;
 	tt = setTimeout(showList, 200);
-
 	clearTimeout(t);
 }
 

@@ -1,7 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 
-function msgHandler(method, pathname, res, query){
+function msgHandler(method, pathname, res, query, postData){
     if(method === 'GET'){
         //message list
         var ret = new Array(10);
@@ -12,7 +12,9 @@ function msgHandler(method, pathname, res, query){
         res.end(JSON.stringify(ret));
     }
     else if(method === 'POST'){
-
+        console.log('IN MSG HANDLER: postData ' + postData);
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        res.end(null);
     }
     else if(method === 'PUT'){
 

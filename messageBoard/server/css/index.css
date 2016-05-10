@@ -1,10 +1,5 @@
-.header{
-	padding: 10px;
-	margin-left: -20px;
-	margin-right: -20px;
+.head{
 	background-color: #69b241;
-	color: #ffffff;
-	text-align: center;
 }
 
 .input-box{
@@ -19,11 +14,6 @@
 	margin: 10px;
 	padding: 5px;
 	color: #4c4c4c;
-}
-
-.header{
-	font-size: 2em;
-	height: 2em;
 }
 
 .container{
