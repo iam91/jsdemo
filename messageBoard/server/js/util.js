@@ -26,3 +26,16 @@ function getCookieByName(name){
 	var value = cookie.substring(valueHead, valueTail);
 	return value;
 }
+
+function formatText(text){
+	var ret = '';
+	for(var i = 0; i < text.length; i++){
+		if(text[i] === '\n'){
+			ret += '<br>';
+		}
+		else{
+			ret += text[i];
+		}
+	}
+	return ret;
+}

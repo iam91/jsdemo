@@ -53,16 +53,21 @@ body{
 	border-bottom: 1px solid #dddddd;
 }
 
+.msg-down{
+}
+
 .msg-name{
 	position: absolute;
 	left: 100px;
 	top: 0;
+	font-size: 1.5em;
 	margin: 10px;
-	padding: 10px;
+	padding: 5px;
 }
 
 .msg-content{
 	padding: 10px;
+	font-size: 0.8em;
 }
 
 .msg-profile{

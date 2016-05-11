@@ -54,12 +54,12 @@ function formMessageCard(baseCard, msg){
 
 	var name = document.createElement('div');
 	name.classList.add('msg-name');
-	name.innerHTML = msg.name;
+	name.innerHTML = decodeURIComponent(msg.name);
 	up.appendChild(name);
 
 	var message = document.createElement('div');
 	message.classList.add('msg-content');
-	message.innerHTML = msg.message;
+	message.innerHTML = formatText(decodeURIComponent(msg.message));
 	down.appendChild(message);
 }
 

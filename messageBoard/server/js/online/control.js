@@ -30,7 +30,7 @@ submitMsgYes.addEventListener('click', function(){
 		};
 		xhr.open('post', urlString, true);
 		var name = getCookieByName('name');
-		var tempMsg = {'name': name, 'message': value};
+		var tempMsg = {'name': encodeURIComponent(name), 'message': encodeURIComponent(value)};
 		xhr.send(JSON.stringify(tempMsg));
 	}
 }, false);
