@@ -31,3 +31,16 @@ submitMsgYes.addEventListener('click', function(){
 		xhr.send(JSON.stringify(tempMsg));
 	}
 }, false);
+
+window.addEventListener('scroll', function(){
+	//TODO too much computation?
+	var scroll = document.body.scrollTop;
+	var boardGroup = document.querySelector('#board-group');
+	var left = document.querySelector('#left');
+	if(scroll > 80){
+		boardGroup.classList.add('float');
+	}
+	else{
+		boardGroup.classList.remove('float');
+	}
+}, false);

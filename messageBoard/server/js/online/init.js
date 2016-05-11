@@ -28,6 +28,7 @@ function init(){
 function formList(msgArray){
 	var list = document.getElementById('msg-list');
 	var messageArray = JSON.parse(msgArray);
+	console.log(messageArray.length);
 	for(var i = 0; i < messageArray.length; i++){
 		var msg = messageArray[i];
 		var msgCard = document.createElement('div');

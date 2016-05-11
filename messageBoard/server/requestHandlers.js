@@ -5,8 +5,8 @@ function msgHandler(method, pathname, res, query, postData){
     //TODO connect database
     if(method === 'GET'){
         //message list
-        var ret = new Array(10);
-        for(var i = 0; i < 10; i++){
+        var ret = new Array(20);
+        for(var i = 0; i < 20; i++){
             ret[i] = {'name': i, 'message': i * 10};
         }
         res.writeHead(200, {'Content-Type': 'application/json'});
