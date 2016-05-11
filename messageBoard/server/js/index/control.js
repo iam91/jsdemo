@@ -28,9 +28,11 @@ signinBtn.addEventListener('click', function(){
 		if(xhr.readyState == 4){
 			if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
 				var ret = xhr.responseText;
-				if(ret === 'ok'){
-					location.href = '/html/online.html';
-				}
+				var user = JSON.parse(ret);
+				setCookie('name', user.name);
+				setCookie('id', user.id);
+				setExpire(0);
+				location.href = '/html/online.html';
 			}
 			else{
 				alert('Request was unsuccessful: ' + xhr.status);

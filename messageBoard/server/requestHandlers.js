@@ -1,5 +1,6 @@
 var fs = require('fs');
 var path = require('path');
+var queryString = require('querystring');
 
 function msgHandler(method, pathname, res, query, postData){
     //TODO connect database
@@ -23,8 +24,17 @@ function msgHandler(method, pathname, res, query, postData){
 }
 
 function userHandler(method, pathname, res, query){
+    //ret = {'id': 0, 'name'}
+    var userParam = queryString.parse(query);
+
+    console.log('IN USER HANDLER: ');
+    console.log('  name: ' + userParam.name);
+    console.log('  password: ' + userParam.password);
+
+    var user = {'name': userParam.name, 'id': 0};
+
 	res.writeHead(200, {'Content-Type': 'text/plain'});
-	res.end('ok');
+	res.end(JSON.stringify(user));
 	//TODO connect database
 }
 
