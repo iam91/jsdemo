@@ -1,5 +1,6 @@
 var httpModule = require('http');
 var urlModule = require('url');
+var log = require('./log');
 
 function start(route, handler){
 	var server = httpModule.createServer(function(req, res){
@@ -10,10 +11,11 @@ function start(route, handler){
 		var query = parsedUrl.query;
 		var postData = '';
 
-		console.log('IN SERVER: method ' + method);
-		console.log('IN SERVER: url ' + urlString);
-		console.log('IN SERVER: pathname ' + pathname);
-		console.log('IN SERVER: query ' + query);
+		var logModule = 'INCOMING REQ';
+		log.log(logModule, 'method', method);
+		log.log(logModule, 'url', urlString);
+		log.log(logModule, 'pathname', pathname);
+		log.log(logModule, 'query', query);
 
 		req.setEncoding('utf8');
 		req.addListener('data', function(postDataChunk){
@@ -28,7 +30,7 @@ function start(route, handler){
 			server.close();
 		}
 	});
-	server.listen(2333, '127.0.0.1');
+	server.listen(2222, '127.0.0.1');
 	console.log('Server running at 127.0.0.1');
 }
 

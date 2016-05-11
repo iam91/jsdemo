@@ -17,3 +17,12 @@ function setExpire(expire){
 function getCookieAll(){
 	return decodeURIComponent(document.cookie);
 }
+
+function getCookieByName(name){
+	var cookie = getCookieAll();
+	var nameHead = cookie.indexOf(name);
+	var valueHead = nameHead + name.length + 1;
+	var valueTail = cookie.indexOf(';', valueHead);
+	var value = cookie.substring(valueHead, valueTail);
+	return value;
+}

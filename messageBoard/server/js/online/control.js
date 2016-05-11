@@ -18,6 +18,10 @@ submitMsgYes.addEventListener('click', function(){
 			if(xhr.readyState == 4){
 				if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
 					//post successfully
+					clearList();
+					queryMsgList(formList);
+					i = 0;
+					tt = setTimeout(showList, 200);
 				}
 				else{
 					alert('Post message request was unsuccessful: ' + xhr.status);
@@ -25,9 +29,8 @@ submitMsgYes.addEventListener('click', function(){
 			}
 		};
 		xhr.open('post', urlString, true);
-
-		var tempMsg = {'name': 'x', 'message': value};
-
+		var name = getCookieByName('name');
+		var tempMsg = {'name': name, 'message': value};
 		xhr.send(JSON.stringify(tempMsg));
 	}
 }, false);

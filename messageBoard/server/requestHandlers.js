@@ -1,20 +1,23 @@
 var fs = require('fs');
 var path = require('path');
 var queryString = require('querystring');
+var database = require('./database');
 
 function msgHandler(method, pathname, res, query, postData){
     //TODO connect database
     if(method === 'GET'){
         //message list
-        var ret = new Array(20);
-        for(var i = 0; i < 20; i++){
-            ret[i] = {'name': i, 'message': i * 10};
-        }
+        var ret = database.getEntries('message');
         res.writeHead(200, {'Content-Type': 'application/json'});
-        res.end(JSON.stringify(ret));
+        if(ret.length === 0){
+            res.end(null);
+        }
+        else{
+            res.end(JSON.stringify(ret));
+        }
     }
     else if(method === 'POST'){
-        console.log('IN MSG HANDLER: postData ' + postData);
+        database.addEntry('message', JSON.parse(postData));
         res.writeHead(200, {'Content-Type': 'application/json'});
         res.end(null);
     }
@@ -26,10 +29,6 @@ function msgHandler(method, pathname, res, query, postData){
 function userHandler(method, pathname, res, query){
     //ret = {'id': 0, 'name'}
     var userParam = queryString.parse(query);
-
-    console.log('IN USER HANDLER: ');
-    console.log('  name: ' + userParam.name);
-    console.log('  password: ' + userParam.password);
 
     var user = {'name': userParam.name, 'id': 0};
 

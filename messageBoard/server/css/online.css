@@ -20,10 +20,13 @@ body{
 
 .float{
 	position: fixed;
+	margin: 5px;
 	width: 50%;
 	top: 0;
 	left: 0;
 	z-index: 9999;
+	box-shadow: 0 0 1px 1px #dddddd;
+	transition: box-shadow 0.5s;
 }
 
 .board{
@@ -55,6 +58,10 @@ body{
 	left: 100px;
 	top: 0;
 	margin: 10px;
+	padding: 10px;
+}
+
+.msg-content{
 	padding: 10px;
 }
 

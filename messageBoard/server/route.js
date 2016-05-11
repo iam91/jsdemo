@@ -1,5 +1,9 @@
+var log = require('./log');
+
 function route(method, pathname, query, handler, res, postData){
-	console.log('Route ' + pathname);
+	
+	log.log('ROUTE', 'pathname', pathname);
+
 	var handlerIndex = undefined;
 	if(pathname.indexOf('/css') === 0){
 		handlerIndex = '/css';
