@@ -43,13 +43,12 @@ document.addEventListener('scroll', function(){
 	//document.documentElement.scrollTop ---ff
 	//document.body.scrollTop ---chrome
 	var scroll = document.documentElement.scrollTop || document.body.scrollTop;
-	var boardGroup = document.querySelector('#board-group');
-	var left = document.querySelector('#left');
+	var left = document.querySelector('.left');
 	if(scroll > 80){
-		boardGroup.classList.add('float');
+		left.classList.add('float');
 	}
 	else{
-		boardGroup.classList.remove('float');
+		left.classList.remove('float');
 	}
 }, false);
 

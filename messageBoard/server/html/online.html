@@ -12,30 +12,39 @@
 	</head>
 	<body>
 		<div class='header'>Message Board</div>
-		<div id="board-group">
-			<div id="board" class="board card">
-				<textarea id="msg-draft"></textarea>
-			</div>
-			<div class="clear btn-flip">
-				<div class="btn-flip-back">
-					<p class="btn-flip-question">Are you sure you want to do that?</p>
-					<div class="btn-flip-yes">Yes</div>
-					<div class="btn-flip-no">No</div>
+		<div class="left">
+			<div id="board-group">
+				<div id="board" class="board card">
+					<textarea id="msg-draft"></textarea>
 				</div>
-				<div class="btn-flip-front">Clear</div>
-			</div>
-			<div class="submit-msg btn-flip">
-				<div class="btn-flip-back">
-					<p class="btn-flip-question">Are you sure you want to do that?</p>
-					<div class="btn-flip-yes">Yes</div>
-					<div class="btn-flip-no">No</div>
+				<div class="clear btn-flip">
+					<div class="btn-flip-back">
+						<p class="btn-flip-question">Are you sure you want to do that?</p>
+						<div class="btn-flip-yes">Yes</div>
+						<div class="btn-flip-no">No</div>
+					</div>
+					<div class="btn-flip-front">Clear</div>
 				</div>
-				<div class="btn-flip-front">Submit</div>
+				<div class="submit-msg btn-flip">
+					<div class="btn-flip-back">
+						<p class="btn-flip-question">Are you sure you want to do that?</p>
+						<div class="btn-flip-yes">Yes</div>
+						<div class="btn-flip-no">No</div>
+					</div>
+					<div class="btn-flip-front">Submit</div>
+				</div>
+			</div>
+			<div class="upload">
+				<input type="file" class="file-hide"></input>
+				<div class='btn'>upload</div>
 			</div>
 		</div>
-		<div id="msg-list"></div>
+		<div class="right">
+			<div id="msg-list"></div>
+		</div>
 		<div id="refresh" class='float-ctrl'>&amp;</div>
 		<script type="text/javascript" src="../js/util.js"></script>
+		<script type="text/javascript" src="../js/widget/btn.js"></script>
 		<script type="text/javascript" src="../js/widget/flip-btn.js"></script>
 		<script type="text/javascript" src="../js/widget/float-ctrl.js"></script>
 		<script type="text/javascript" src="../js/online/global.js"></script>
