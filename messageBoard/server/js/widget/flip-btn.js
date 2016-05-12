@@ -1,4 +1,4 @@
-function flipBtnOnClick(btn){
+function flipBtnEvent(btn){
 	//given element object, how to select a child of specified class?
 	var flipBtnFront = btn.childNodes[3];
 	var flipBtnBack = btn.childNodes[1];

@@ -1,5 +1,7 @@
-flipBtnOnClick(submitMsg);
-flipBtnOnClick(clear);
+flipBtnEvent(submitMsg);
+flipBtnEvent(clear);
+floatCtrlEvent(refresh);
+//floatCtrlOnDoubleClick(refresh);
 clearYes.addEventListener('click', function(){
 	msgDraft.value = '';
 
@@ -61,23 +63,12 @@ document.addEventListener('scroll', function(){
 	}
 }, false);
 
-/*
-window.addEventListener('mousemove', function(e){
-	console.log(e.clientX + ' ' + e.clientY);
-}, false);
-*/
 
 
-refresh.addEventListener('mousedown', function(){
-	var x = 0;
-	var y = 0;
-	window.onmousemove = function(e){
-		console.log(e.clientX + ' ' + e.clientY);
-		x = e.clientX;
-		y = e.clientY;
-	};
-}, false);
-
-refresh.addEventListener('mouseup', function(){
-	window.onmousemove = null;
+refresh.addEventListener('dblclick', function(){
+	clearList();
+	page = 1;
+	oldPage = page;
+	listShowIndex = 0;
+	queryMsgList(appendList, page, pageSize);
 }, false);

@@ -3,10 +3,11 @@
 	height: 50px;
 	border-radius: 25px;
 	position: fixed;
-	background-color: #3f2860;
+	background-color: #004687;
 	/*background-image: url(/favicon.ico) no-repeat;*/
 	box-shadow: 0 0 3px 1px #6e6e6e;
 	z-index: 9999;
+	-moz-user-select: none;
 
 	font-weight: bold;
 	color: #ffffff;
@@ -20,5 +21,8 @@
 
 .float-ctrl:hover{
 	transform: rotateZ(90deg);
-	transition: transform 0.2s;
+}
+
+.float-ctrl:active{
+	transform: rotateZ(180deg);
 }
