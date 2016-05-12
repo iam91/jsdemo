@@ -14,6 +14,9 @@ function route(method, pathname, query, handler, res, postData){
 	else if(pathname.indexOf('/html') === 0){
 		handlerIndex = '/html';
 	}
+	else if(pathname.indexOf('/favicon.ico') === 0){
+		handlerIndex = '/favicon.ico';
+	}
 	else if(pathname === '/'){
 		handlerIndex = '/';
 	}

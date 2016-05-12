@@ -43,7 +43,8 @@ function staticResourceHandler(method, pathname, res, query){
 	}
 	else if(pathname.indexOf('/css') === 0
 		|| pathname.indexOf('/js') === 0
-		|| pathname.indexOf('/html') === 0){
+		|| pathname.indexOf('/html') === 0
+        || pathname.indexOf('/favicon.ico') === 0){
 		resourceDir += '.' + pathname;
 	}
 	fs.readFile(resourceDir, 'binary', function(error, data){

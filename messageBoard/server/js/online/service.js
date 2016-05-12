@@ -4,14 +4,7 @@ function queryMsgList(func, page, pageSize){
 		if(xhr.readyState == 4){
 			if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
 				var msgArray = JSON.parse(xhr.responseText);
-				if(msgArray.length > 0){
-					func(msgArray);
-					console.log(msgArray.length + ' ' + pageSize);
-					if(msgArray.length === pageSize){
-						oldPage = page;
-						page++;
-					}
-				}
+				func(msgArray);
 			}
 			else{
 				alert('Request was unsuccessful: ' + xhr.status);
@@ -34,6 +27,9 @@ function clearList(){
 }
 
 function appendList(messageArray){
+	if(messageArray.length === pageSize){
+		page++;
+	}
 	var list = document.getElementById('msg-list');
 	for(var i = 0; i < messageArray.length; i++){
 		var msg = messageArray[i];
@@ -41,8 +37,9 @@ function appendList(messageArray){
 		formMessageCard(msgCard, msg);
 		list.appendChild(msgCard);
 	}
-	showListCnt = 0;
-	tt = setTimeout(showList, 200);
+	
+	var show = showList(listShowIndex);
+	show();
 }
 
 function formMessageCard(baseCard, msg){
@@ -70,15 +67,19 @@ function formMessageCard(baseCard, msg){
 	down.appendChild(message);
 }
 
-var showListCnt;
-var list;
-var tt;
-function showList(){
+function showList(showListStart){
+	var showListCnt = showListStart;
+	var list = document.getElementById('msg-list');
+	var t = 0;
 	var len = list.childNodes.length;
-	clearTimeout(tt);
-	if(showListCnt < len){
-		list.childNodes[showListCnt].classList.add('msg-show');
-		showListCnt++;
-		tt = setTimeout(showList, 100);
+	function show(){
+		clearTimeout(t);
+		if(showListCnt < len){
+			list.childNodes[showListCnt].classList.add('msg-show');
+			listShowIndex++;
+			showListCnt++;
+			t = setTimeout(show, 200);
+		}
 	}
+	return show;
 }

@@ -19,6 +19,9 @@ submitMsgYes.addEventListener('click', function(){
 				if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
 					//post successfully
 					clearList();
+					page = 1;
+					oldPage = page;
+					listShowIndex = 0;
 					queryMsgList(appendList, page, pageSize);
 				}
 				else{
@@ -52,8 +55,29 @@ document.addEventListener('scroll', function(){
 	var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 	var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
 	var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
-	
 	if(scrollHeight === scrollTop + clientHeight && page != oldPage){
+		oldPage = page;
 		queryMsgList(appendList, page, pageSize);
 	}
+}, false);
+
+/*
+window.addEventListener('mousemove', function(e){
+	console.log(e.clientX + ' ' + e.clientY);
+}, false);
+*/
+
+
+refresh.addEventListener('mousedown', function(){
+	var x = 0;
+	var y = 0;
+	window.onmousemove = function(e){
+		console.log(e.clientX + ' ' + e.clientY);
+		x = e.clientX;
+		y = e.clientY;
+	};
+}, false);
+
+refresh.addEventListener('mouseup', function(){
+	window.onmousemove = null;
 }, false);

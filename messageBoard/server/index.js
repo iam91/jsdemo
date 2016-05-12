@@ -5,6 +5,7 @@ var requestHandlers = require('./requestHandlers');
 var handle = {};
 handle[''] = requestHandlers.staticResourceHandler;
 handle['/'] = requestHandlers.staticResourceHandler;
+handle['/favicon.ico'] = requestHandlers.staticResourceHandler;
 handle['/index.html'] = requestHandlers.staticResourceHandler;
 handle['/js'] = requestHandlers.staticResourceHandler;
 handle['/css'] = requestHandlers.staticResourceHandler;
