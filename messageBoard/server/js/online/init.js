@@ -1,4 +1,6 @@
-queryMsgList(formList);
+page = 1;
+oldPage = page;
+queryMsgList(appendList, page, pageSize);
 
 var t = setTimeout(init, 200);
 function init(){
@@ -6,8 +8,7 @@ function init(){
 	submitMsg.classList.add('show');
 	clear.classList.add('show');
 	list = document.getElementById('msg-list');
-	i = 0;
-	tt = setTimeout(showList, 200);
+
 	clearTimeout(t);
 }
 

@@ -1,8 +1,8 @@
 flipBtnOnClick(submitMsg);
 flipBtnOnClick(clear);
-
 clearYes.addEventListener('click', function(){
 	msgDraft.value = '';
+
 }, false);
 
 submitMsgYes.addEventListener('click', function(){
@@ -19,9 +19,7 @@ submitMsgYes.addEventListener('click', function(){
 				if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
 					//post successfully
 					clearList();
-					queryMsgList(formList);
-					i = 0;
-					tt = setTimeout(showList, 200);
+					queryMsgList(appendList, page, pageSize);
 				}
 				else{
 					alert('Post message request was unsuccessful: ' + xhr.status);
@@ -35,9 +33,11 @@ submitMsgYes.addEventListener('click', function(){
 	}
 }, false);
 
-window.addEventListener('scroll', function(){
+document.addEventListener('scroll', function(){
 	//TODO too much computation?
-	var scroll = document.body.scrollTop;
+	//document.documentElement.scrollTop ---ff
+	//document.body.scrollTop ---chrome
+	var scroll = document.documentElement.scrollTop || document.body.scrollTop;
 	var boardGroup = document.querySelector('#board-group');
 	var left = document.querySelector('#left');
 	if(scroll > 80){
@@ -45,5 +45,15 @@ window.addEventListener('scroll', function(){
 	}
 	else{
 		boardGroup.classList.remove('float');
+	}
+}, false);
+
+document.addEventListener('scroll', function(){
+	var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+	var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+	var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+	
+	if(scrollHeight === scrollTop + clientHeight && page != oldPage){
+		queryMsgList(appendList, page, pageSize);
 	}
 }, false);

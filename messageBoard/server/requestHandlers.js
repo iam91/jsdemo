@@ -7,14 +7,13 @@ function msgHandler(method, pathname, res, query, postData){
     //TODO connect database
     if(method === 'GET'){
         //message list
-        var ret = database.getEntries('message');
+        var queryParam = queryString.parse(query);
+        var page = Number(queryParam.page);
+        var pageSize = Number(queryParam.pageSize);
+
+        var ret = database.getEntries('message', page, pageSize);
         res.writeHead(200, {'Content-Type': 'application/json'});
-        if(ret.length === 0){
-            res.end(null);
-        }
-        else{
-            res.end(JSON.stringify(ret));
-        }
+        res.end(JSON.stringify(ret));
     }
     else if(method === 'POST'){
         database.addEntry('message', JSON.parse(postData));
@@ -30,7 +29,7 @@ function userHandler(method, pathname, res, query){
     //ret = {'id': 0, 'name'}
     var userParam = queryString.parse(query);
 
-    var user = {'name': userParam.name, 'id': 0};
+    var user = {'name': decodeURIComponent(userParam.name), 'id': 0};
 
 	res.writeHead(200, {'Content-Type': 'text/plain'});
 	res.end(JSON.stringify(user));

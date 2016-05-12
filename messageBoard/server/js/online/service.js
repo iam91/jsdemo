@@ -1,12 +1,16 @@
-function queryMsgList(fun){
+function queryMsgList(func, page, pageSize){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(event){
 		if(xhr.readyState == 4){
 			if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
-				var msgArray = xhr.responseText;
-				//is it right?
-				if(msgArray && msgArray.length > 0){
-					fun(msgArray);
+				var msgArray = JSON.parse(xhr.responseText);
+				if(msgArray.length > 0){
+					func(msgArray);
+					console.log(msgArray.length + ' ' + pageSize);
+					if(msgArray.length === pageSize){
+						oldPage = page;
+						page++;
+					}
 				}
 			}
 			else{
@@ -16,6 +20,8 @@ function queryMsgList(fun){
 		}
 	};
 	var urlString = '/msg';
+	urlString = addURLParam(urlString, 'page', page);
+	urlString = addURLParam(urlString, 'pageSize', pageSize);
 	xhr.open('get', urlString, true);
 	xhr.send(null);
 }
@@ -27,15 +33,16 @@ function clearList(){
 	}
 }
 
-function formList(msgArray){
+function appendList(messageArray){
 	var list = document.getElementById('msg-list');
-	var messageArray = JSON.parse(msgArray);
 	for(var i = 0; i < messageArray.length; i++){
 		var msg = messageArray[i];
 		var msgCard = document.createElement('div');
 		formMessageCard(msgCard, msg);
 		list.appendChild(msgCard);
 	}
+	showListCnt = 0;
+	tt = setTimeout(showList, 200);
 }
 
 function formMessageCard(baseCard, msg){
@@ -63,15 +70,15 @@ function formMessageCard(baseCard, msg){
 	down.appendChild(message);
 }
 
-var i;
+var showListCnt;
 var list;
 var tt;
 function showList(){
 	var len = list.childNodes.length;
 	clearTimeout(tt);
-	if(i < len){
-		list.childNodes[i].classList.add('msg-show');
-		i++;
+	if(showListCnt < len){
+		list.childNodes[showListCnt].classList.add('msg-show');
+		showListCnt++;
 		tt = setTimeout(showList, 100);
 	}
 }

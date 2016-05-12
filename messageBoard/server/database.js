@@ -15,13 +15,21 @@ function addEntry(databaseName, entry){
 	database.push(entry);
 }
 
-function getEntries(databaseName){
+function getEntries(databaseName, page, pageSize){
 	database = getDatabase(databaseName);
-	var ret = new Array(database.length);
-	for(var i = 0; i < database.length; i++){
-		ret[i] = database[i];
+	var start = database.length - 1 - (page - 1) * pageSize;
+	var ret = undefined;
+	if(start < 0 || start >= database.length){
+		ret = new Array(0);
 	}
-	ret.reverse();
+	else{
+		var size = Math.min(pageSize, database.length - (page - 1) * pageSize);
+		ret = new Array(size);
+		for(var i = 0; i < size; i++){
+			ret[i] = database[start];
+			start--;
+		}
+	}
 	return ret;
 }
 
