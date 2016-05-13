@@ -1,6 +1,7 @@
 flipBtnEvent(submitMsg);
 flipBtnEvent(clear);
 floatCtrlEvent(refresh);
+floatCtrlEvent(signout);
 //floatCtrlOnDoubleClick(refresh);
 clearYes.addEventListener('click', function(){
 	msgDraft.value = '';
@@ -70,4 +71,60 @@ refresh.addEventListener('dblclick', function(){
 	oldPage = page;
 	listShowIndex = 0;
 	queryMsgList(appendList, page, pageSize);
+}, false);
+
+signout.addEventListener('dblclick', function(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4){
+			if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
+				/*
+				setCookie('name', decodeURIComponent(user.name));
+				setCookie('id', decodeURIComponent(user.id));
+				setExpire(0);*/
+				setExpire(-1);//TODO
+				location.href = '/html/index.html';
+			}
+			else{
+				alert('Request was unsuccessful: ' + xhr.status);
+			}
+		}
+	};
+	var name = getCookieByName('name');
+	var urlString = '/signout';
+	urlString = addURLParam(urlString, 'name', name);
+	xhr.open('get', urlString, true);
+	xhr.send(null);
+}, false);
+
+upload.addEventListener('click', function(){
+	input.onchange = function(){
+		var file = input.files[0];
+		var formData = new FormData();
+		formData.append('img', 'aaa');
+		formData.append('src', 'bbb');
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4){
+				if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
+					//post successfully
+					alert('oops');
+				}
+				else{
+					alert('Post message request was unsuccessful: ' + xhr.status);
+				}
+			}
+		}
+		xhr.open('post', '/upload', true);
+		xhr.send(formData);
+		/*
+		var reader = new FileReader();
+		reader.readAsDataURL(input.files[0]);
+		reader.onload = function(){
+			var preview = document.getElementById('preview');
+			//console.log(reader.result);
+			//preview.innerHTML = '<img class="preview" src="' + reader.result + '" alt="preview"/>';
+		}*/
+	}
+	input.click();
 }, false);

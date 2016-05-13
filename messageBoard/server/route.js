@@ -29,6 +29,12 @@ function route(method, pathname, query, handler, res, postData){
 	else if(pathname.indexOf('/msg') === 0){
 		handlerIndex = '/msg';
 	}
+	else if(pathname.indexOf('/upload') === 0){
+		handlerIndex = '/upload';
+	}
+	else if(pathname.indexOf('/signout') === 0){
+		handlerIndex = '/signout';
+	}
 
 	if(typeof handler[handlerIndex] === 'function'){
 		handler[handlerIndex](method, pathname, res, query, postData);

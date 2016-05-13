@@ -24,6 +24,7 @@
 .input-box{
 	margin-left: 10px;
 	margin-right: 10px;
+	padding: 2px;
 	border: 1px solid #ddd;
 	border-radius: 5px;
 	outline-color: #9999cc;

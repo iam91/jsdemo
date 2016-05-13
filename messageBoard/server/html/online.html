@@ -8,10 +8,11 @@
 		<link rel="stylesheet" href="../css/widget/flip-btn.css" type="text/css">
 		<link rel="stylesheet" href="../css/widget/btn.css" type="text/css">
 		<link rel="stylesheet" href="../css/online.css" type="text/css">
+		<link rel="stylesheet" href="../css/font-awesome-4.5.0/css/font-awesome.min.css" type="text/css">
 		<title>Message Board</title>
 	</head>
 	<body>
-		<div class='header'>Message Board</div>
+		<div class='header'>DEMO</div>
 		<div class="left">
 			<div id="board-group">
 				<div id="board" class="board card">
@@ -35,16 +36,17 @@
 				</div>
 			</div>
 			<div class="upload">
-				<input type="file" class="file-hide"></input>
-				<div class='btn'>upload</div>
+				<input id="upload-input" type="file" class="file-hide"></input>
+				<div class='btn btn-purple upload-btn'>upload</div>
+				<div id="preview"></div>
 			</div>
 		</div>
 		<div class="right">
 			<div id="msg-list"></div>
 		</div>
-		<div id="refresh" class='float-ctrl'>&amp;</div>
+		<div id="refresh" class='float-ctrl fa fa-spinner fa-refresh fa-2x'></div>
+		<div id="signout" class='float-ctrl fa fa-sign-out fa-2x'></div>
 		<script type="text/javascript" src="../js/util.js"></script>
-		<script type="text/javascript" src="../js/widget/btn.js"></script>
 		<script type="text/javascript" src="../js/widget/flip-btn.js"></script>
 		<script type="text/javascript" src="../js/widget/float-ctrl.js"></script>
 		<script type="text/javascript" src="../js/online/global.js"></script>

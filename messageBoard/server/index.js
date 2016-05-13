@@ -12,5 +12,7 @@ handle['/css'] = requestHandlers.staticResourceHandler;
 handle['/html'] = requestHandlers.staticResourceHandler;
 handle['/user'] = requestHandlers.userHandler;
 handle['/msg'] = requestHandlers.msgHandler;
+handle['/upload'] = requestHandlers.uploadHandler;
+handle['/signout'] = requestHandlers.signoutHandler;
 
 server.start(route.route, handle);

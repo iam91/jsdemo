@@ -1,5 +1,6 @@
 .btn-flip{
 	position: relative;
+	z-index: 9999;
 }
 
 .btn-flip-front{
@@ -52,7 +53,6 @@
 }
 
 .btn-flip-back-show{
-	z-index: 9999;
 	opacity: 1.0;
 	height: 150px;
 	width: 300px;

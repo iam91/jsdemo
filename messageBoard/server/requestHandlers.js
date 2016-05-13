@@ -3,6 +3,17 @@ var path = require('path');
 var queryString = require('querystring');
 var database = require('./database');
 
+function signoutHandler(method, pathname, res, query, postData){
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end(null);
+}
+
+function uploadHandler(method, pathname, res, query, postData){
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end(null);
+    console.log(postData);
+}
+
 function msgHandler(method, pathname, res, query, postData){
     //TODO connect database
     if(method === 'GET'){
@@ -95,3 +106,5 @@ function getType(ext){
 exports.staticResourceHandler = staticResourceHandler;
 exports.userHandler = userHandler;
 exports.msgHandler = msgHandler;
+exports.uploadHandler = uploadHandler;
+exports.signoutHandler = signoutHandler;

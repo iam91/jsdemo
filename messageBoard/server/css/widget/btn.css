@@ -8,6 +8,7 @@
 	padding: 3px;
 	margin: 10px;
 	line-height: 30px;
+	box-shadow: 0 0 1px 1px #cccccc;
 }
 
 .btn-default{
@@ -19,5 +20,17 @@
 }
 
 .btn-default:active{
-	box-shadow: 0 0 5px 1px #4c4c4c inset;
+	box-shadow: 0 0 5px 2px #4c4c4c inset;
+}
+
+.btn-purple{
+	background-color: #9966cc;
+}
+
+.btn-purple:hover{
+	background-color: #663399;
+}
+
+.btn-purple:active{
+	box-shadow: 0 0 5px 2px #663366 inset;
 }
