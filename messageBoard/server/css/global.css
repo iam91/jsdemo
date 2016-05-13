@@ -1,13 +1,15 @@
 body{
 	font-family:Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,WenQuanYi Micro Hei,Microsoft Yahei,sans-serif;
+	background-color: #f0f0f0;
 }
 
 .header{
 	padding: 10px;
 	margin-left: -20px;
 	margin-right: -20px;
-	color: #ffffff;
+	color: #cccccc;
 	text-align: center;
 	font-size: 2em;
 	height: 2em;
+	line-height: 2em;
 }

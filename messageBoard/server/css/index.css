@@ -1,33 +1,43 @@
-.header{
-	background-color: #69b241;
-}
-
-.input-box{
-	margin: 10px;
-	padding: 2px;
-	border: 1px solid #ddd;
-	border-radius: 5px;
-	outline-color: #69b241;
-}
-
-.input-label{
-	margin: 10px;
-	padding: 5px;
-	color: #4c4c4c;
-}
-
 .container{
 	position: relative;
 	left: 33%;
 }
 
+.card-head{
+	padding: 10px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #dddddd;
+}
+
+.card-head-content{
+	font-size: 1.6em;
+}
+
+.card-head-small{
+	float: right;
+}
+
+.input-label{
+	margin: 10px;
+}
+
+.input-box{
+	margin-left: 10px;
+	margin-right: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	outline-color: #9999cc;
+	height: 25px;
+	width: 94%;
+}
+
 .signin, .signup{
 	width: 33%;
-	color: #4d4e53;
+	color: #999999;
 	position: absolute;
 	top: 0;
 	left: 0;
-	transition: transform 1s;
+	transition: transform 0.6s;
 	backface-visibility:hidden;
 }
 
@@ -41,13 +51,4 @@
 
 .signin-flipped{
 	transform: rotateY(180deg);
-}
-
-.signin-head, .signup-head{
-	padding-left: 20px;
-}
-
-.input-box{
-	height: 25px;
-	width: 90%;
 }
