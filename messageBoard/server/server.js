@@ -6,6 +6,7 @@ function start(route, handler){
 	var server = httpModule.createServer(function(req, res){
 		var method = req.method;
 		var urlString = req.url;
+		var cookie = req.headers.cookie;
 		var parsedUrl = urlModule.parse(urlString);
 		var pathname = parsedUrl.pathname;
 		var query = parsedUrl.query;
@@ -14,6 +15,7 @@ function start(route, handler){
 		var logModule = 'INCOMING REQ';
 		log.log(logModule, 'method', method);
 		log.log(logModule, 'url', urlString);
+		log.log(logModule, 'cookie', cookie);
 		log.log(logModule, 'pathname', pathname);
 		log.log(logModule, 'query', query);
 

@@ -5,10 +5,6 @@ function addURLParam(url, name, value){
 }
 
 function setCookie(key, value){
-	document.cookie += encodeURIComponent(key + '=')
-}
-
-function setCookie(key, value){
 	var cookie = getCookieAll();
 	var keyHead = cookie.indexOf(key);
 	if(keyHead === -1){
