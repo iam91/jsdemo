@@ -17,19 +17,23 @@
 	float: right;
 }
 
-.input-label{
+.input-group{
 	margin: 10px;
 }
 
+.input-label{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
 .input-box{
-	margin-left: 10px;
-	margin-right: 10px;
-	padding: 2px;
+	box-sizing: border-box;
+	padding: 1px 5px 1px 5px;
 	border: 1px solid #ddd;
 	border-radius: 5px;
 	outline-color: #9999cc;
-	height: 25px;
-	width: 94%;
+	height: 30px;
+	width: 100%;
 }
 
 .signin, .signup{

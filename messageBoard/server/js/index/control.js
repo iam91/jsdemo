@@ -29,9 +29,7 @@ signinBtn.addEventListener('click', function(){
 			if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
 				var ret = xhr.responseText;
 				var user = JSON.parse(ret);
-				setCookie('name', decodeURIComponent(user.name));
-				setCookie('id', decodeURIComponent(user.id));
-				setExpire(0);
+				//cookie
 				location.href = '/html/online.html';
 			}
 			else{

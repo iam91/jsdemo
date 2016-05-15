@@ -1,6 +1,3 @@
-floatCtrlEvent(refresh);
-floatCtrlEvent(signout);
-//floatCtrlOnDoubleClick(refresh);
 clearYes.addEventListener('click', function(){
 	msgDraft.value = '';
 
@@ -76,11 +73,7 @@ signout.addEventListener('dblclick', function(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4){
 			if((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
-				/*
-				setCookie('name', decodeURIComponent(user.name));
-				setCookie('id', decodeURIComponent(user.id));
-				setExpire(0);*/
-				setExpire(-1);//TODO
+				//cookie
 				location.href = '/html/index.html';
 			}
 			else{
