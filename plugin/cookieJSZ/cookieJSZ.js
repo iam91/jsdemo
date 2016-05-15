@@ -1,10 +1,25 @@
-(function(window, document){
+;(function(window, document){
 	var cookieJSZ = {
 
 		set: function(name, value, param){
 			var cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value) + ';';
+			var date = new Date();
 			if(param){
-				cookie += param.expire ? 'expires=' + param.expire + ';' : '';
+				if(typeof param.expire === 'number'
+					|| typeof param.expire === 'string'){
+					cookie += param.expire ? 'expires=' + param.expire + ';' : '';
+				}
+				else if(typeof param.expire === 'object'){
+					var timeDelta = 0;
+					timeDelta += param.expire.ms ? (param.expire.ms > 0 ? param.expire.ms : 0) : 0;
+					timeDelta += param.expire.s ? (param.expire.s > 0 ? param.expire.s * 1000 : 0) : 0;
+					timeDelta += param.expire.m ? (param.expire.m > 0 ? param.expire.m * 60000 : 0) : 0;
+					timeDelta += param.expire.h ? (param.expire.h > 0 ? param.expire.h * 3600000 : 0) : 0;
+					timeDelta += param.expire.d ? (param.expire.d > 0 ? param.expire.d * 86400000 : 0) : 0;
+					date.setTime(date.getTime() + timeDelta);
+					cookie += param.expire ? 'expires=' + date.toUTCString() + ';' : '';
+				}
+				
 				cookie += param.domain ? 'domain=' + param.domain + ';' : '';
 				cookie += param.path ? 'path=' + param.path + ';' : '';
 				cookie += param.secure ? 'secure;' : '';

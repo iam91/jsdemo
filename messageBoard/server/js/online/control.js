@@ -1,5 +1,3 @@
-flipBtnEvent(submitMsg);
-flipBtnEvent(clear);
 floatCtrlEvent(refresh);
 floatCtrlEvent(signout);
 //floatCtrlOnDoubleClick(refresh);
