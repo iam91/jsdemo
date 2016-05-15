@@ -7,6 +7,14 @@ function start(route, handler){
 		var method = req.method;
 		var urlString = req.url;
 		var cookie = req.headers.cookie;
+		//
+		console.log('------------- headers -------------');
+		var headerKeys = Object.keys(req.headers);
+		for(var i = 0; i < headerKeys.length; i++){
+			console.log(headerKeys[i] + ': ' + req.headers[headerKeys[i]]);
+		}
+		console.log('------------- headers -------------');
+		//
 		var parsedUrl = urlModule.parse(urlString);
 		var pathname = parsedUrl.pathname;
 		var query = parsedUrl.query;

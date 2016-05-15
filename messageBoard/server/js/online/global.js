@@ -7,7 +7,7 @@ var msgDraft = document.querySelector('#msg-draft');
 var refresh = document.querySelector('#refresh');
 var signout = document.querySelector('#signout');
 var upload = document.querySelector('.upload-btn');
-	var input = document.querySelector('#upload-input');
+var input = document.querySelector('#upload-input');
 
 var page = 0;
 var pageSize = 10;

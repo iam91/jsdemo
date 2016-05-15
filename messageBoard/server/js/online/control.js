@@ -1,6 +1,5 @@
 clearYes.addEventListener('click', function(){
 	msgDraft.value = '';
-
 }, false);
 
 submitMsgYes.addEventListener('click', function(){
@@ -57,8 +56,6 @@ document.addEventListener('scroll', function(){
 		queryMsgList(appendList, page, pageSize);
 	}
 }, false);
-
-
 
 refresh.addEventListener('dblclick', function(){
 	clearList();

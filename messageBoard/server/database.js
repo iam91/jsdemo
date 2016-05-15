@@ -1,5 +1,6 @@
 var message = new Array(0);
 var user = new Array(0);
+var avatar = new Array(0);
 
 function getDatabase(databaseName){
 	if(databaseName === 'message'){
@@ -7,6 +8,9 @@ function getDatabase(databaseName){
 	}
 	else if(databaseName === 'user'){
 		return user;
+	}
+	else if(databaseName === 'avatar'){
+		return avatar;
 	}
 }
 
@@ -16,7 +20,7 @@ function addEntry(databaseName, entry){
 }
 
 function getEntries(databaseName, page, pageSize){
-	database = getDatabase(databaseName);
+	var database = getDatabase(databaseName);
 	var start = database.length - 1 - (page - 1) * pageSize;
 	var ret = undefined;
 	if(start < 0 || start >= database.length){
@@ -31,6 +35,10 @@ function getEntries(databaseName, page, pageSize){
 		}
 	}
 	return ret;
+}
+
+function getEntry(databaseName, index){
+	var database = getDatabase(databaseName);
 }
 
 exports.addEntry = addEntry;
