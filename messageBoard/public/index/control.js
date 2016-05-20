@@ -30,7 +30,7 @@ signinBtn.addEventListener('click', function(){
 				var ret = xhr.responseText;
 				var user = JSON.parse(ret);
 				//cookie
-				location.href = '/html/online.html';
+				location.href = '/online/online.html';
 			}
 			else{
 				alert('Request was unsuccessful: ' + xhr.status);

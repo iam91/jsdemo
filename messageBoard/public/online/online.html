@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<link rel="stylesheet" href="/global/global.css" type="text/css">
+		<link rel="stylesheet" href="/lib/widget/css/card.css" type="text/css">
+		<link rel="stylesheet" href="/lib/widget/css/float-ctrl.css" type="text/css">
+		<link rel="stylesheet" href="/lib/widget/css/flip-btn.css" type="text/css">
+		<link rel="stylesheet" href="/lib/widget/css/btn.css" type="text/css">
+		<link rel="stylesheet" href="/online/online.css" type="text/css">
+		<link rel="stylesheet" href="/lib/font-awesome-4.5.0/css/font-awesome.min.css" type="text/css">
+		<title>Message Board</title>
+	</head>
+	<body>
+		<div class='header'>DEMO</div>
+		<div class="left">
+			<div id="board-group">
+				<div id="board" class="board card">
+					<textarea id="msg-draft"></textarea>
+				</div>
+				<div class="clear btn-flip">
+					<div class="btn-flip-front">Clear</div>
+				</div>
+				<div class="submit-msg btn-flip">
+					<div class="btn-flip-front">Submit</div>
+				</div>
+			</div>
+			<div class="upload">
+				<input id="upload-input" type="file" class="file-hide">
+				<div class='btn btn-purple upload-btn'>upload</div>
+				<div id="preview"></div>
+			</div>
+		</div>
+		<div class="right">
+			<div id="msg-list"></div>
+		</div>
+		<div id="refresh" class='float-ctrl fa fa-spinner fa-refresh fa-2x'></div>
+		<div id="signout" class='float-ctrl fa fa-sign-out fa-2x'></div>
+		<script type="text/javascript" src="/lib/util.js"></script>
+		<script type="text/javascript" src="/lib/widget/js/flip-btn.js"></script>
+		<script type="text/javascript" src="/lib/widget/js/float-ctrl.js"></script>
+		<script type="text/javascript" src="/online/global.js"></script>
+		<script type="text/javascript" src="/online/service.js"></script>
+		<script type="text/javascript" src="/online/init.js"></script>
+		<script type="text/javascript" src="/online/control.js"></script>
+	</body>
+</html>

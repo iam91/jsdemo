@@ -49,16 +49,15 @@ function userHandler(method, pathname, res, query){
 
 function staticResourceHandler(method, pathname, res, query){
 	var resourceDir = '';
-	if(pathname === '' || pathname === '/' || pathname === '/index.html'){
-		resourceDir += './html/index.html';
+    var ext = path.extname(resourceDir);
+
+	if(pathname === '' || pathname === '/'){
+		resourceDir += './public/index/index.html';
 	}
-	else if(pathname.indexOf('/css') === 0
-		|| pathname.indexOf('/js') === 0
-		|| pathname.indexOf('/html') === 0
-        || pathname.indexOf('/lib') === 0
-        || pathname.indexOf('/favicon.ico') === 0){
-		resourceDir += '.' + pathname;
-	}
+    else{
+        resourceDir += './public' + pathname;
+    }
+
 	fs.readFile(resourceDir, 'binary', function(error, data){
 		var ext = path.extname(resourceDir);
 		var type = getType(ext);

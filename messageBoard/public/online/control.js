@@ -1,3 +1,5 @@
+var submitMsgYes = document.querySelector('.submit-msg .btn-flip-back .btn-flip-yes');
+var clearYes = document.querySelector('.clear .btn-flip-back .btn-flip-yes');
 clearYes.addEventListener('click', function(){
 	msgDraft.value = '';
 }, false);
@@ -32,6 +34,7 @@ submitMsgYes.addEventListener('click', function(){
 		xhr.send(JSON.stringify(tempMsg));
 	}
 }, false);
+
 
 document.addEventListener('scroll', function(){
 	//TODO too much computation?

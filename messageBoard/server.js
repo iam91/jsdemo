@@ -35,13 +35,13 @@ function start(route, handler){
 			route(method, pathname, query, handler, res, postData);
 		});
 		
-		////////////////////////////////////
 		if(pathname == '/end'){
 			server.close();
 		}
 	});
-	server.listen(2222, '127.0.0.1');
+	server.listen(4444, '127.0.0.1');
 	console.log('Server running at 127.0.0.1');
+	console.log('process.cwd ' + process.cwd());
 }
 
 exports.start = start;
